@@ -2,11 +2,14 @@ package com.example.middlemanv007;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -16,6 +19,7 @@ public class UserRegistration extends AppCompatActivity {
     TextInputLayout userName, password, reEnterPassword;
     String userNameText, passwordText, reEnterPasswordText;
     Button registerBtn;
+    RelativeLayout relativeLayout;
     DatabaseReference reference;
 
     @Override
@@ -32,9 +36,26 @@ public class UserRegistration extends AppCompatActivity {
                 if (validateUserName()) {
                     if (validatePassword()) {
                         if (validateReEnterPassword()) {
-                            reference= FirebaseDatabase.getInstance().getReference("UsersDto");
-                            UserDto userDto=new UserDto(userNameText,reEnterPasswordText);
-                            reference.child(userNameText).setValue(userDto);
+                            try {
+                                userName.setError(null);
+                                userName.setErrorEnabled(false);
+                                reference= FirebaseDatabase.getInstance().getReference("UsersDto");
+                                UserDto userDto=new UserDto(userNameText,reEnterPasswordText);
+                                reference.child(userNameText).setValue(userDto);
+                                Snackbar.make(relativeLayout,"User successfully created",Snackbar.LENGTH_INDEFINITE).setAction("Login", new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        Intent intent=new Intent(UserRegistration.this,MainActivity.class);
+                                        startActivity(intent);
+                                        UserRegistration.this.finish();
+                                    }
+                                }).show();
+                            }
+                            catch (Exception e)
+                            {
+                                userName.setError("Please use letters and numbers");
+                                userName.setErrorEnabled(true);
+                            }
                         } else {
                             validateReEnterPassword();
                         }
@@ -103,5 +124,6 @@ public class UserRegistration extends AppCompatActivity {
         password = findViewById(R.id.userRegistrationPage_password);
         reEnterPassword = findViewById(R.id.userRegistrationPage_reEnterPassword);
         registerBtn = findViewById(R.id.userRegistrationPage_registerButton);
+        relativeLayout=findViewById(R.id.userRegistration_relLayout);
     }
 }
