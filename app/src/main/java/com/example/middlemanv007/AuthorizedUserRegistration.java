@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -22,8 +23,8 @@ public class AuthorizedUserRegistration extends AppCompatActivity {
     RadioGroup userType;
     Button registerButton;
     RelativeLayout relativeLayout;
-    String emailText, companyNameText, companyRegisterNoText, passwordText, phoneNoText, userTypeText, reTypePasswordText,userName;
-    DatabaseReference reference;
+    String emailText, companyNameText, companyRegisterNoText, passwordText, phoneNoText, userTypeText, reTypePasswordText, userName;
+    DatabaseReference reference, reference1, reference2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,11 +32,9 @@ public class AuthorizedUserRegistration extends AppCompatActivity {
         setContentView(R.layout.activity_authorized_user_registration);
 
         try {
-            userName=getIntent().getStringExtra("userName");
-        }
-        catch (Exception e)
-        {
-            userName=null;
+            userName = getIntent().getStringExtra("userName");
+        } catch (Exception e) {
+            userName = null;
         }
         initializeViews();
 
@@ -51,13 +50,14 @@ public class AuthorizedUserRegistration extends AppCompatActivity {
                                     if (validateReEnterPassword()) {
                                         if (verifyPassword()) {
                                             if (validateUserType()) {
-                                                AuthorizedUserRegistrationDto authDto=new AuthorizedUserRegistrationDto(emailText,userTypeText,companyNameText,companyRegisterNoText,reTypePasswordText,phoneNoText);
-                                                reference= FirebaseDatabase.getInstance().getReference("AuthorizedUsersDto");
+                                                AuthorizedUserRegistrationDto authDto = new AuthorizedUserRegistrationDto(emailText, userTypeText, companyNameText, companyRegisterNoText, reTypePasswordText, phoneNoText, userName);
+                                                insertIntoDB();
+                                                reference = FirebaseDatabase.getInstance().getReference("AuthorizedUsersDto");
                                                 reference.child(userName).setValue(authDto);
                                                 Snackbar.make(relativeLayout, "Registration Successful", Snackbar.LENGTH_LONG).setAction("LOGIN", new View.OnClickListener() {
                                                     @Override
                                                     public void onClick(View v) {
-                                                        Intent intent=new Intent(AuthorizedUserRegistration.this,AuthorizedUserLogin.class);
+                                                        Intent intent = new Intent(AuthorizedUserRegistration.this, AuthorizedUserLogin.class);
                                                         startActivity(intent);
                                                         AuthorizedUserRegistration.this.finish();
                                                     }
@@ -91,6 +91,20 @@ public class AuthorizedUserRegistration extends AppCompatActivity {
 
     }
 
+    private void insertIntoDB() {
+        if(userTypeText.equals("Company"))
+        {
+            AuthorizedUserRegistrationDto authDto = new AuthorizedUserRegistrationDto(emailText, userTypeText, companyNameText, companyRegisterNoText, reTypePasswordText, phoneNoText, userName);
+            DatabaseReference drc=FirebaseDatabase.getInstance().getReference(userTypeText);
+            drc.child(userName).setValue(authDto);
+        }
+        else if(userTypeText.equals("Vendor"))
+        {
+            AuthorizedUserRegistrationDto authDto = new AuthorizedUserRegistrationDto(emailText, userTypeText, companyNameText, companyRegisterNoText, reTypePasswordText, phoneNoText, userName);
+            DatabaseReference drv=FirebaseDatabase.getInstance().getReference(userTypeText);
+            drv.child(userName).setValue(authDto);
+        }
+    }
 
     private boolean validateEmail() {
         if (emailText.equals("")) {

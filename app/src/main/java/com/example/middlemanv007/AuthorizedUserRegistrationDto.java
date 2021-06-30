@@ -8,14 +8,24 @@ public class AuthorizedUserRegistrationDto {
     private String companyLicenceNo;
     private String password;
     private String phoneNo;
+    private String userName;
 
-    public AuthorizedUserRegistrationDto(String email, String userType, String companyName, String companyLicenceNo, String password, String phoneNo) {
+    public AuthorizedUserRegistrationDto(String email, String userType, String companyName, String companyLicenceNo, String password, String phoneNo, String userName) {
         this.email = email;
         this.userType = userType;
         this.companyName = companyName;
         this.companyLicenceNo = companyLicenceNo;
         this.password = password;
         this.phoneNo = phoneNo;
+        this.userName = userName;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getEmail() {
@@ -66,6 +76,7 @@ public class AuthorizedUserRegistrationDto {
         this.phoneNo = phoneNo;
     }
 
+
     @Override
     public String toString() {
         return "AuthorizedUserRegistrationDto{" +
@@ -75,6 +86,7 @@ public class AuthorizedUserRegistrationDto {
                 ", companyLicenceNo='" + companyLicenceNo + '\'' +
                 ", password='" + password + '\'' +
                 ", phoneNo='" + phoneNo + '\'' +
+                ", userName='" + userName + '\'' +
                 '}';
     }
 }
