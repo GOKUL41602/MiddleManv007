@@ -10,6 +10,9 @@ public class AuthorizedUserRegistrationDto {
     private String phoneNo;
     private String userName;
 
+    public AuthorizedUserRegistrationDto() {
+    }
+
     public AuthorizedUserRegistrationDto(String email, String userType, String companyName, String companyLicenceNo, String password, String phoneNo, String userName) {
         this.email = email;
         this.userType = userType;

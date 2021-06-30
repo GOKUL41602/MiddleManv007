@@ -11,25 +11,51 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.middlemanv007.AuthorizedUserRegistrationDto;
 import com.example.middlemanv007.R;
+import com.example.middlemanv007.SalesMela;
+import com.example.middlemanv007.VendorRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class GalleryFragment extends Fragment {
 
-    private GalleryViewModel galleryViewModel;
 
+    private View root;
+    private RecyclerView recyclerView;
+    private VendorRecyclerAdapter adapter;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        galleryViewModel =
-                new ViewModelProvider(this).get(GalleryViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_gallery, container, false);
-        final TextView textView = root.findViewById(R.id.text_gallery);
-        galleryViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+        root = inflater.inflate(R.layout.fragment_gallery, container, false);
+        recyclerView=root.findViewById(R.id.vendors_recView);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
+        FirebaseRecyclerOptions<AuthorizedUserRegistrationDto> options
+                = new FirebaseRecyclerOptions.Builder<AuthorizedUserRegistrationDto>()
+                .setQuery(FirebaseDatabase.getInstance().getReference("Company"), AuthorizedUserRegistrationDto.class)
+                .build();
+        adapter = new VendorRecyclerAdapter(options, root.getContext());
+        recyclerView.setAdapter(adapter);
+
+        recyclerView.setNestedScrollingEnabled(false);
         return root;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
+
+    /**
+     * onStop() method is used to set listener for adapter.
+     */
+    @Override
+    public void onStop() {
+        super.onStop();
+        adapter.stopListening();
     }
 }

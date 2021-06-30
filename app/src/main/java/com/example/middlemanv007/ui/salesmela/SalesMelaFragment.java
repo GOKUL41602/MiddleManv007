@@ -7,17 +7,22 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.middlemanv007.R;
 
 public class SalesMelaFragment extends Fragment {
 
 
+    private RecyclerView recyclerView;
+
     private View root;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
          root = inflater.inflate(R.layout.fragment_sales_mela, container, false);
 
+
         return root;
     }
+
 }
