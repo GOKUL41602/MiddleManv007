@@ -75,7 +75,9 @@ public class MainActivity extends AppCompatActivity {
                         {
                             password.setErrorEnabled(false);
                             password.setError(null);
-                            Snackbar.make(relativeLayout,"Login Successfull",Snackbar.LENGTH_SHORT).show();
+                            Intent intent=new Intent(MainActivity.this,SalesMela.class);
+                            startActivity(intent);
+                            MainActivity.this.finish();
                         }
                         else
                         {

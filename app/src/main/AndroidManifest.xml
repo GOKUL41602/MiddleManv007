@@ -9,7 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MiddleManv007">
-        <activity android:name=".UserRegistration"></activity>
+        <activity android:name=".AuthorizedUserRegistration"></activity>
+        <activity android:name=".AuthorizedUserLogin" />
+        <activity android:name=".ForgetPassword" />
+        <activity
+            android:name=".SalesMela"
+            android:label="@string/title_activity_sales_mela"
+            android:theme="@style/Theme.MiddleManv007.NoActionBar" />
+        <activity android:name=".UserRegistration" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
