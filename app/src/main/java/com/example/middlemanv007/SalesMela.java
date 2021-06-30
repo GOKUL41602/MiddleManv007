@@ -1,5 +1,6 @@
 package com.example.middlemanv007;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
@@ -19,18 +20,29 @@ import androidx.appcompat.widget.Toolbar;
 public class SalesMela extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
-
+    String userName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sales_mela);
+
+        try{
+            userName=getIntent().getStringExtra("userName");
+        }
+        catch(Exception e)
+        {
+            userName=null;
+        }
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Login to create a Request", Snackbar.LENGTH_LONG).show();
+                Intent intent=new Intent(SalesMela.this,AuthorizedUserLogin.class);
+                intent.putExtra("userName",userName);
+                startActivity(intent);
             }
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

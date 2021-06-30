@@ -19,7 +19,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="290dp"
         android:layout_height="wrap_content"
-        android:id="@+id/authorizedLoginPage_userName"
+        android:id="@+id/authorizedLoginPage_email"
         android:layout_below="@+id/authorizedLoginPage_title"
         android:layout_marginTop="30dp"
         android:layout_centerHorizontal="true"
@@ -35,7 +35,7 @@
         android:layout_width="290dp"
         android:layout_height="wrap_content"
         android:id="@+id/authorizedLoginPage_password"
-        android:layout_below="@+id/authorizedLoginPage_userName"
+        android:layout_below="@+id/authorizedLoginPage_email"
         android:layout_marginTop="30dp"
         android:layout_centerHorizontal="true"
         app:passwordToggleEnabled="true"

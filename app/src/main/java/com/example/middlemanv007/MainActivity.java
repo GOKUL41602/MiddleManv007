@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
                MainActivity.this.finish();
             }
         });
-
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
                             password.setErrorEnabled(false);
                             password.setError(null);
                             Intent intent=new Intent(MainActivity.this,SalesMela.class);
+                            intent.putExtra("userName",userNameText);
                             startActivity(intent);
                             MainActivity.this.finish();
                         }
