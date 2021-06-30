@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initializeViews();
 
-
         newUserButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,7 +92,9 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 else {
-                    Log.d("failed","data doesn't exists");
+                    userName.setError("User name doesn't exists");
+                    userName.setErrorEnabled(true);
+                    userName.requestFocus();
                 }
             }
 
