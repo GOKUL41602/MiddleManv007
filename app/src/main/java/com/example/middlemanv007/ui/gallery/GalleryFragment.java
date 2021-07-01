@@ -30,7 +30,7 @@ public class GalleryFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
         FirebaseRecyclerOptions<AuthorizedCompanyDto> options
                 = new FirebaseRecyclerOptions.Builder<AuthorizedCompanyDto>()
-                .setQuery(FirebaseDatabase.getInstance().getReference("Vendor"), AuthorizedCompanyDto.class)
+                .setQuery(FirebaseDatabase.getInstance().getReference("Company"), AuthorizedCompanyDto.class)
                 .build();
         adapter = new VendorRecyclerAdapter(options, root.getContext());
         recyclerView.setAdapter(adapter);
@@ -45,9 +45,6 @@ public class GalleryFragment extends Fragment {
         adapter.startListening();
     }
 
-    /**
-     * onStop() method is used to set listener for adapter.
-     */
     @Override
     public void onStop() {
         super.onStop();

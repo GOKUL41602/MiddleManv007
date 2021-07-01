@@ -29,7 +29,7 @@ public class VendorRecyclerAdapter extends FirebaseRecyclerAdapter<AuthorizedCom
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.vendor_format_layout,parent,false);
+        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.company_format_layout,parent,false);
         return new ViewHolder(view);
     }
 
@@ -44,10 +44,10 @@ public class VendorRecyclerAdapter extends FirebaseRecyclerAdapter<AuthorizedCom
 
         private void initializeViews(View view)
         {
-            cardView=view.findViewById(R.id.vendor_cardView);
-            vendorName=view.findViewById(R.id.vendor_cardView_name);
-            sourceType=view.findViewById(R.id.vendor_cardView_sourceType);
-            establishmentYear=view.findViewById(R.id.vendor_cardView_establishmentYear);
+            cardView=view.findViewById(R.id.company_cardView);
+            vendorName=view.findViewById(R.id.company_cardView_name);
+            sourceType=view.findViewById(R.id.company_cardView_sourceType);
+            establishmentYear=view.findViewById(R.id.company_cardView_establishmentYear);
         }
     }
 }

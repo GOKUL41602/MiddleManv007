@@ -71,8 +71,8 @@ public class AuthorizedUserRegistration extends AppCompatActivity {
                                                         AuthorizedCompanyDto authCompanyDto = new AuthorizedCompanyDto(emailText, userTypeText, companyNameText, companyRegisterNoText, passwordText, phoneNoText, userName, establishmentYearText, sourceTypeText);
                                                         reference = FirebaseDatabase.getInstance().getReference("AuthorizedUsersDto");
                                                         reference.child(userName).setValue(authCompanyDto);
-                                                        reference1 = FirebaseDatabase.getInstance().getReference("Company");
-                                                        reference1.child(userName).setValue(authCompanyDto);
+                                                        DatabaseReference dnc = FirebaseDatabase.getInstance().getReference("Company");
+                                                        dnc.child(userName).setValue(authCompanyDto);
                                                     } else {
                                                         validateUserType();
                                                     }
@@ -114,7 +114,7 @@ public class AuthorizedUserRegistration extends AppCompatActivity {
                     if (validateVendorName()) {
                         if (validateVendorPhoneNo()) {
                             if (validateVendorStartYear()) {
-                                if (validateSourceType()) {
+                                if (validateVendorSourceType()) {
                                     if (validateVendorPassword()) {
                                         if (validateVendorReEnterPassword()) {
                                             if (verifyVendorPassword()) {
@@ -122,8 +122,8 @@ public class AuthorizedUserRegistration extends AppCompatActivity {
                                                     AuthorizedVendorDto authVendorDto = new AuthorizedVendorDto(vendorNameText, vendorEmailText, vendorPhoneNoText, vendorPasswordText, vendorStartYearText, vendorSourceTypeText, userName, userTypeText);
                                                     reference = FirebaseDatabase.getInstance().getReference("AuthorizedUsersDto");
                                                     reference.child(userName).setValue(authVendorDto);
-                                                    reference2 = FirebaseDatabase.getInstance().getReference("Vendor");
-                                                    reference2.child(userName).setValue(authVendorDto);
+                                                    DatabaseReference dfc = FirebaseDatabase.getInstance().getReference("Vendor");
+                                                    dfc.child(userName).setValue(authVendorDto);
                                                 } else {
                                                     validateUserType();
                                                 }
@@ -137,7 +137,7 @@ public class AuthorizedUserRegistration extends AppCompatActivity {
                                         validateVendorPassword();
                                     }
                                 } else {
-                                    validateSourceType();
+                                    validateVendorSourceType();
                                 }
                             } else {
                                 validateVendorStartYear();
@@ -153,8 +153,6 @@ public class AuthorizedUserRegistration extends AppCompatActivity {
                 }
             }
         });
-
-
     }
 
     private boolean validateVendorName() {
