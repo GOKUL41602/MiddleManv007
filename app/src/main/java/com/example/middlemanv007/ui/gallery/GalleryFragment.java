@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.middlemanv007.AuthorizedCompanyDto;
 import com.example.middlemanv007.R;
-import com.example.middlemanv007.VendorRecyclerAdapter;
+import com.example.middlemanv007.CompanyRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -21,18 +21,18 @@ public class GalleryFragment extends Fragment {
 
     private View root;
     private RecyclerView recyclerView;
-    private VendorRecyclerAdapter adapter;
+    private CompanyRecyclerAdapter adapter;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_gallery, container, false);
-        recyclerView=root.findViewById(R.id.vendors_recView);
+        recyclerView=root.findViewById(R.id.company_recView);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
         FirebaseRecyclerOptions<AuthorizedCompanyDto> options
                 = new FirebaseRecyclerOptions.Builder<AuthorizedCompanyDto>()
                 .setQuery(FirebaseDatabase.getInstance().getReference("Company"), AuthorizedCompanyDto.class)
                 .build();
-        adapter = new VendorRecyclerAdapter(options, root.getContext());
+        adapter = new CompanyRecyclerAdapter(options, root.getContext());
         recyclerView.setAdapter(adapter);
 
         recyclerView.setNestedScrollingEnabled(false);

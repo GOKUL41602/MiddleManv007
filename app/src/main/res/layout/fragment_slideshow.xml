@@ -8,4 +8,11 @@
     tools:context=".ui.slideshow.SlideshowFragment">
 
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/vendor_recView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"/>
 </RelativeLayout>
