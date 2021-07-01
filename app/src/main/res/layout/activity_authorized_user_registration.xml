@@ -185,11 +185,24 @@
                         android:inputType="textPassword" />
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <Button
+                    android:id="@+id/authorizedRegisterPage_companyRegisterButton"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/authorizedRegisterPage_reEnterPassword"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginBottom="50dp"
+                    android:elevation="10dp"
+                    android:text="Register" />
+
             </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="visible"
                 android:layout_below="@+id/authorizedRegisterPage_radioGroup"
                 android:id="@+id/authorizedRegisterPage_vendorRelLayout">
 
@@ -305,21 +318,19 @@
                         android:hint="Re-Enter Password"
                         android:inputType="textPassword" />
                 </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:id="@+id/authorizedRegisterPage_vendorRegisterButton"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/authorizedRegisterPage_vendorReEnterPassword"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginBottom="50dp"
+                    android:elevation="10dp"
+                    android:text="Register" />
             </RelativeLayout>
-
-
-
-            <Button
-                android:id="@+id/authorizedRegisterPage_registerButton"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/authorizedRegisterPage_vendorRelLayout"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp"
-                android:layout_marginRight="40dp"
-                android:layout_marginBottom="50dp"
-                android:elevation="10dp"
-                android:text="Register" />
 
         </RelativeLayout>
     </ScrollView>

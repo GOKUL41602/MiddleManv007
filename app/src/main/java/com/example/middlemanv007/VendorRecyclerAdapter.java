@@ -13,14 +13,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
-public class VendorRecyclerAdapter extends FirebaseRecyclerAdapter<AuthorizedUserRegistrationDto,VendorRecyclerAdapter.ViewHolder> {
+public class VendorRecyclerAdapter extends FirebaseRecyclerAdapter<AuthorizedCompanyDto,VendorRecyclerAdapter.ViewHolder> {
 
-    public VendorRecyclerAdapter(@NonNull FirebaseRecyclerOptions<AuthorizedUserRegistrationDto> options, Context context) {
+    public VendorRecyclerAdapter(@NonNull FirebaseRecyclerOptions<AuthorizedCompanyDto> options, Context context) {
         super(options);
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull AuthorizedUserRegistrationDto model) {
+    protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull AuthorizedCompanyDto model) {
         holder.vendorName.setText(model.getUserName());
         holder.establishmentYear.setText(model.getYearOfEstablish());
         holder.sourceType.setText(model.getResourceType());

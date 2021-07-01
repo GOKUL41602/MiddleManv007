@@ -1,6 +1,6 @@
 package com.example.middlemanv007;
 
-public class AuthorizedUserRegistrationDto {
+public class AuthorizedCompanyDto {
 
     private String email;
     private String userType;
@@ -12,10 +12,10 @@ public class AuthorizedUserRegistrationDto {
     private String yearOfEstablish;
     private String resourceType;
 
-    public AuthorizedUserRegistrationDto() {
+    public AuthorizedCompanyDto() {
     }
 
-    public AuthorizedUserRegistrationDto(String email, String userType, String companyName, String companyLicenceNo, String password, String phoneNo, String userName, String yearOfEstablish, String resourceType) {
+    public AuthorizedCompanyDto(String email, String userType, String companyName, String companyLicenceNo, String password, String phoneNo, String userName, String yearOfEstablish, String resourceType) {
         this.email = email;
         this.userType = userType;
         this.companyName = companyName;

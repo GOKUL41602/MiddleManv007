@@ -19,11 +19,12 @@ import com.google.firebase.database.FirebaseDatabase;
 public class AuthorizedUserRegistration extends AppCompatActivity {
 
     TextInputLayout email, companyName, companyRegisterNo, password, reTypePassword, phoneNo, sourceType, establishmentyear;
-    TextInputLayout vendorEmail,vendorName,vendorPassword,vendorReEnterPassword,vendorPhoneNo,vendorSourceType,vendorStartYear;
-    RadioGroup userType;
-    Button registerButton;
-    RelativeLayout relativeLayout,vendorRelLayout,companyRelLayout;
-    String vendorEmailText,vendorNameText,vendorPasswordText,vendorReEnterPasswordText,vendorPhoneNoText,vendorSourceTypeText,vendorStartYearText;
+    TextInputLayout vendorEmail, vendorName, vendorPassword, vendorReEnterPassword, vendorPhoneNo, vendorSourceType, vendorStartYear;
+    RadioButton companyBtn, vendorBtn;
+    RadioGroup radioGroup;
+    Button registerButton, vendorRegisterBtn;
+    RelativeLayout relativeLayout, vendorRelLayout, companyRelLayout;
+    String vendorEmailText, vendorNameText, vendorPasswordText, vendorReEnterPasswordText, vendorPhoneNoText, vendorSourceTypeText, vendorStartYearText;
     String emailText, companyNameText, companyRegisterNoText, passwordText, phoneNoText, userTypeText, reTypePasswordText, userName, establishmentYearText, sourceTypeText;
     DatabaseReference reference, reference1, reference2;
 
@@ -39,49 +40,56 @@ public class AuthorizedUserRegistration extends AppCompatActivity {
         }
         initializeViews();
 
+
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (companyBtn.isChecked()) {
+                    companyRelLayout.setVisibility(View.VISIBLE);
+                    vendorRelLayout.setVisibility(View.GONE);
+                } else if (vendorBtn.isChecked()) {
+                    vendorRelLayout.setVisibility(View.VISIBLE);
+                    companyRelLayout.setVisibility(View.GONE);
+                }
+            }
+        });
+
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                initializeStrings();
+                initializeCompanyStrings();
                 if (validateEmail()) {
                     if (validateCompanyName()) {
                         if (validateCompanyRegisterNo()) {
                             if (validatePhoneNo()) {
-                                if (validatePassword()) {
-                                    if (validateReEnterPassword()) {
-                                        if (verifyPassword()) {
-                                            if (validateUserType()) {
-                                                if (validateSourceType()) {
-                                                    if (validateEstablishmentYear()) {
-                                                        AuthorizedUserRegistrationDto authDto = new AuthorizedUserRegistrationDto(emailText, userTypeText, companyNameText, companyRegisterNoText, reTypePasswordText, phoneNoText, userName, establishmentYearText, sourceTypeText);
-                                                        insertIntoDB();
+                                if (validateEstablishmentYear()) {
+                                    if (validateSourceType()) {
+                                        if (validatePassword()) {
+                                            if (validateReEnterPassword()) {
+                                                if (verifyPassword()) {
+                                                    if (validateUserType()) {
+                                                        AuthorizedCompanyDto authCompanyDto = new AuthorizedCompanyDto(emailText, userTypeText, companyNameText, companyRegisterNoText, passwordText, phoneNoText, userName, establishmentYearText, sourceTypeText);
                                                         reference = FirebaseDatabase.getInstance().getReference("AuthorizedUsersDto");
-                                                        reference.child(userName).setValue(authDto);
-                                                        Snackbar.make(relativeLayout, "Registration Successful", Snackbar.LENGTH_LONG).setAction("LOGIN", new View.OnClickListener() {
-                                                            @Override
-                                                            public void onClick(View v) {
-                                                                Intent intent = new Intent(AuthorizedUserRegistration.this, AuthorizedUserLogin.class);
-                                                                startActivity(intent);
-                                                                AuthorizedUserRegistration.this.finish();
-                                                            }
-                                                        }).show();
+                                                        reference.child(userName).setValue(authCompanyDto);
+                                                        reference1 = FirebaseDatabase.getInstance().getReference("Company");
+                                                        reference1.child(userName).setValue(authCompanyDto);
                                                     } else {
-                                                        validateEstablishmentYear();
+                                                        validateUserType();
                                                     }
                                                 } else {
-                                                    validateSourceType();
+                                                    verifyPassword();
                                                 }
                                             } else {
-                                                validateUserType();
+                                                validateReEnterPassword();
                                             }
                                         } else {
-                                            verifyPassword();
+                                            validatePassword();
                                         }
                                     } else {
-                                        validateReEnterPassword();
+                                        validateSourceType();
                                     }
                                 } else {
-                                    validatePassword();
+                                    validateEstablishmentYear();
                                 }
                             } else {
                                 validatePhoneNo();
@@ -98,17 +106,150 @@ public class AuthorizedUserRegistration extends AppCompatActivity {
             }
         });
 
+        vendorRegisterBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                initializeVendorStrings();
+                if (validateVendorEmail()) {
+                    if (validateVendorName()) {
+                        if (validateVendorPhoneNo()) {
+                            if (validateVendorStartYear()) {
+                                if (validateSourceType()) {
+                                    if (validateVendorPassword()) {
+                                        if (validateVendorReEnterPassword()) {
+                                            if (verifyVendorPassword()) {
+                                                if (validateUserType()) {
+                                                    AuthorizedVendorDto authVendorDto = new AuthorizedVendorDto(vendorNameText, vendorEmailText, vendorPhoneNoText, vendorPasswordText, vendorStartYearText, vendorSourceTypeText, userName, userTypeText);
+                                                    reference = FirebaseDatabase.getInstance().getReference("AuthorizedUsersDto");
+                                                    reference.child(userName).setValue(authVendorDto);
+                                                    reference2 = FirebaseDatabase.getInstance().getReference("Vendor");
+                                                    reference2.child(userName).setValue(authVendorDto);
+                                                } else {
+                                                    validateUserType();
+                                                }
+                                            } else {
+                                                verifyVendorPassword();
+                                            }
+                                        } else {
+                                            validateVendorReEnterPassword();
+                                        }
+                                    } else {
+                                        validateVendorPassword();
+                                    }
+                                } else {
+                                    validateSourceType();
+                                }
+                            } else {
+                                validateVendorStartYear();
+                            }
+                        } else {
+                            validateVendorPhoneNo();
+                        }
+                    } else {
+                        validateVendorName();
+                    }
+                } else {
+                    validateVendorEmail();
+                }
+            }
+        });
+
+
     }
 
-    private void insertIntoDB() {
-        if (userTypeText.equals("Company")) {
-            AuthorizedUserRegistrationDto authDto = new AuthorizedUserRegistrationDto(emailText, userTypeText, companyNameText, companyRegisterNoText, reTypePasswordText, phoneNoText, userName, establishmentYearText, sourceTypeText);
-            DatabaseReference drc = FirebaseDatabase.getInstance().getReference(userTypeText);
-            drc.child(userName).setValue(authDto);
-        } else if (userTypeText.equals("Vendor")) {
-            AuthorizedUserRegistrationDto authDto = new AuthorizedUserRegistrationDto(emailText, userTypeText, companyNameText, companyRegisterNoText, reTypePasswordText, phoneNoText, userName, establishmentYearText, sourceTypeText);
-            DatabaseReference drv = FirebaseDatabase.getInstance().getReference(userTypeText);
-            drv.child(userName).setValue(authDto);
+    private boolean validateVendorName() {
+        if (vendorNameText.equals("")) {
+            vendorName.setError("Enter Vendor Name ");
+            vendorName.setErrorEnabled(true);
+            return false;
+        } else {
+            vendorName.setError(null);
+            vendorName.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+    private boolean validateVendorEmail() {
+        if (vendorEmailText.equals("")) {
+            vendorEmail.setError("Enter Vendor Email ");
+            vendorEmail.setErrorEnabled(true);
+            return false;
+        } else {
+            vendorEmail.setError(null);
+            vendorEmail.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+    private boolean validateVendorPhoneNo() {
+        if (vendorPhoneNoText.equals("")) {
+            vendorPhoneNo.setError("Enter PhoneNo ");
+            vendorPhoneNo.setErrorEnabled(true);
+            return false;
+        } else {
+            vendorPhoneNo.setError(null);
+            vendorPhoneNo.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+    private boolean validateVendorStartYear() {
+        if (vendorStartYearText.equals("")) {
+            vendorStartYear.setError("Enter StartYear of Cultivate ");
+            vendorStartYear.setErrorEnabled(true);
+            return false;
+        } else {
+            vendorStartYear.setError(null);
+            vendorStartYear.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+    private boolean validateVendorSourceType() {
+        if (vendorSourceTypeText.equals("")) {
+            vendorSourceType.setError("Enter Vendor SourceType ");
+            vendorSourceType.setErrorEnabled(true);
+            return false;
+        } else {
+            vendorSourceType.setError(null);
+            vendorSourceType.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+    private boolean validateVendorPassword() {
+        if (vendorPasswordText.equals("")) {
+            vendorPassword.setError("Enter Password ");
+            vendorPassword.setErrorEnabled(true);
+            return false;
+        } else {
+            vendorPassword.setError(null);
+            vendorPassword.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+    private boolean validateVendorReEnterPassword() {
+        if (vendorReEnterPasswordText.equals("")) {
+            vendorReEnterPassword.setError("Enter Password ");
+            vendorReEnterPassword.setErrorEnabled(true);
+            return false;
+        } else {
+            vendorReEnterPassword.setError(null);
+            vendorReEnterPassword.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+    private boolean verifyVendorPassword() {
+        if (!vendorReEnterPasswordText.equals(vendorPasswordText)) {
+            vendorReEnterPassword.setError("Enter Password ");
+            vendorReEnterPassword.setErrorEnabled(true);
+            return false;
+        } else {
+            vendorReEnterPassword.setError(null);
+            vendorReEnterPassword.setErrorEnabled(false);
+            return true;
         }
     }
 
@@ -231,17 +372,21 @@ public class AuthorizedUserRegistration extends AppCompatActivity {
     }
 
     private void getUserType() {
-        if (userType.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(this, "Please choose user Type", Toast.LENGTH_SHORT).show();
+        if (companyBtn.isChecked()) {
+            userTypeText = companyBtn.getText().toString();
+            vendorRelLayout.setVisibility(View.GONE);
+            companyRelLayout.setVisibility(View.VISIBLE);
+        } else if (vendorBtn.isChecked()) {
+            userTypeText = vendorBtn.getText().toString();
+            vendorRelLayout.setVisibility(View.VISIBLE);
+            companyRelLayout.setVisibility(View.GONE);
         } else {
-            int radioButton = userType.getCheckedRadioButtonId();
-            RadioButton type = findViewById(radioButton);
-            userTypeText = type.getText().toString();
-
+            Toast.makeText(this, "Please Select User Type", Toast.LENGTH_SHORT).show();
         }
+
     }
 
-    private void initializeStrings() {
+    private void initializeCompanyStrings() {
         emailText = email.getEditText().getText().toString();
         companyNameText = companyName.getEditText().getText().toString();
         companyRegisterNoText = companyRegisterNo.getEditText().getText().toString();
@@ -250,6 +395,17 @@ public class AuthorizedUserRegistration extends AppCompatActivity {
         phoneNoText = phoneNo.getEditText().getText().toString();
         sourceTypeText = sourceType.getEditText().getText().toString();
         establishmentYearText = establishmentyear.getEditText().getText().toString();
+
+    }
+
+    private void initializeVendorStrings() {
+        vendorEmailText = vendorEmail.getEditText().getText().toString();
+        vendorNameText = vendorName.getEditText().getText().toString();
+        vendorSourceTypeText = vendorSourceType.getEditText().getText().toString();
+        vendorPasswordText = vendorPassword.getEditText().getText().toString();
+        vendorReEnterPasswordText = vendorReEnterPassword.getEditText().getText().toString();
+        vendorStartYearText = vendorStartYear.getEditText().getText().toString();
+        vendorPhoneNoText = vendorPhoneNo.getEditText().getText().toString();
     }
 
     private void initializeViews() {
@@ -259,10 +415,26 @@ public class AuthorizedUserRegistration extends AppCompatActivity {
         password = findViewById(R.id.authorizedRegisterPage_password);
         reTypePassword = findViewById(R.id.authorizedRegisterPage_reEnterPassword);
         phoneNo = findViewById(R.id.authorizedRegisterPage_phoneNo);
-        registerButton = findViewById(R.id.authorizedRegisterPage_registerButton);
-        userType = findViewById(R.id.authorizedRegisterPage_radioGroup);
+        registerButton = findViewById(R.id.authorizedRegisterPage_companyRegisterButton);
+        vendorRegisterBtn = findViewById(R.id.authorizedRegisterPage_vendorRegisterButton);
+        companyBtn = findViewById(R.id.authorizedRegisterPage_companyRadioButton);
+        vendorBtn = findViewById(R.id.authorizedRegisterPage_vendorRadioButton);
         relativeLayout = findViewById(R.id.authorizedRegisterPage_relLayout);
         sourceType = findViewById(R.id.authorizedRegisterPage_resourceType);
         establishmentyear = findViewById(R.id.authorizedRegisterPage_establishmentYear);
+
+        vendorEmail = findViewById(R.id.authorizedRegisterPage_vendorEmail);
+        vendorName = findViewById(R.id.authorizedRegisterPage_vendorName);
+        vendorPhoneNo = findViewById(R.id.authorizedRegisterPage_vendorPhoneNo);
+        vendorPassword = findViewById(R.id.authorizedRegisterPage_vendorPassword);
+        vendorReEnterPassword = findViewById(R.id.authorizedRegisterPage_vendorReEnterPassword);
+        vendorSourceType = findViewById(R.id.authorizedRegisterPage_vendorResourceType);
+        vendorStartYear = findViewById(R.id.authorizedRegisterPage_vendorStartYear);
+
+        radioGroup = findViewById(R.id.authorizedRegisterPage_radioGroup);
+
+        vendorRelLayout = findViewById(R.id.authorizedRegisterPage_vendorRelLayout);
+        companyRelLayout = findViewById(R.id.authorizedRegisterPage_companyRelLayout);
+
     }
 }
