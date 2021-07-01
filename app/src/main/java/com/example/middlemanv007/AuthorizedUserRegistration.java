@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -19,11 +18,13 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class AuthorizedUserRegistration extends AppCompatActivity {
 
-    TextInputLayout email, companyName, companyRegisterNo, password, reTypePassword, phoneNo;
+    TextInputLayout email, companyName, companyRegisterNo, password, reTypePassword, phoneNo, sourceType, establishmentyear;
+    TextInputLayout vendorEmail,vendorName,vendorPassword,vendorReEnterPassword,vendorPhoneNo,vendorSourceType,vendorStartYear;
     RadioGroup userType;
     Button registerButton;
-    RelativeLayout relativeLayout;
-    String emailText, companyNameText, companyRegisterNoText, passwordText, phoneNoText, userTypeText, reTypePasswordText, userName;
+    RelativeLayout relativeLayout,vendorRelLayout,companyRelLayout;
+    String vendorEmailText,vendorNameText,vendorPasswordText,vendorReEnterPasswordText,vendorPhoneNoText,vendorSourceTypeText,vendorStartYearText;
+    String emailText, companyNameText, companyRegisterNoText, passwordText, phoneNoText, userTypeText, reTypePasswordText, userName, establishmentYearText, sourceTypeText;
     DatabaseReference reference, reference1, reference2;
 
     @Override
@@ -50,18 +51,26 @@ public class AuthorizedUserRegistration extends AppCompatActivity {
                                     if (validateReEnterPassword()) {
                                         if (verifyPassword()) {
                                             if (validateUserType()) {
-                                                AuthorizedUserRegistrationDto authDto = new AuthorizedUserRegistrationDto(emailText, userTypeText, companyNameText, companyRegisterNoText, reTypePasswordText, phoneNoText, userName);
-                                                insertIntoDB();
-                                                reference = FirebaseDatabase.getInstance().getReference("AuthorizedUsersDto");
-                                                reference.child(userName).setValue(authDto);
-                                                Snackbar.make(relativeLayout, "Registration Successful", Snackbar.LENGTH_LONG).setAction("LOGIN", new View.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(View v) {
-                                                        Intent intent = new Intent(AuthorizedUserRegistration.this, AuthorizedUserLogin.class);
-                                                        startActivity(intent);
-                                                        AuthorizedUserRegistration.this.finish();
+                                                if (validateSourceType()) {
+                                                    if (validateEstablishmentYear()) {
+                                                        AuthorizedUserRegistrationDto authDto = new AuthorizedUserRegistrationDto(emailText, userTypeText, companyNameText, companyRegisterNoText, reTypePasswordText, phoneNoText, userName, establishmentYearText, sourceTypeText);
+                                                        insertIntoDB();
+                                                        reference = FirebaseDatabase.getInstance().getReference("AuthorizedUsersDto");
+                                                        reference.child(userName).setValue(authDto);
+                                                        Snackbar.make(relativeLayout, "Registration Successful", Snackbar.LENGTH_LONG).setAction("LOGIN", new View.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(View v) {
+                                                                Intent intent = new Intent(AuthorizedUserRegistration.this, AuthorizedUserLogin.class);
+                                                                startActivity(intent);
+                                                                AuthorizedUserRegistration.this.finish();
+                                                            }
+                                                        }).show();
+                                                    } else {
+                                                        validateEstablishmentYear();
                                                     }
-                                                }).show();
+                                                } else {
+                                                    validateSourceType();
+                                                }
                                             } else {
                                                 validateUserType();
                                             }
@@ -92,17 +101,38 @@ public class AuthorizedUserRegistration extends AppCompatActivity {
     }
 
     private void insertIntoDB() {
-        if(userTypeText.equals("Company"))
-        {
-            AuthorizedUserRegistrationDto authDto = new AuthorizedUserRegistrationDto(emailText, userTypeText, companyNameText, companyRegisterNoText, reTypePasswordText, phoneNoText, userName);
-            DatabaseReference drc=FirebaseDatabase.getInstance().getReference(userTypeText);
+        if (userTypeText.equals("Company")) {
+            AuthorizedUserRegistrationDto authDto = new AuthorizedUserRegistrationDto(emailText, userTypeText, companyNameText, companyRegisterNoText, reTypePasswordText, phoneNoText, userName, establishmentYearText, sourceTypeText);
+            DatabaseReference drc = FirebaseDatabase.getInstance().getReference(userTypeText);
             drc.child(userName).setValue(authDto);
-        }
-        else if(userTypeText.equals("Vendor"))
-        {
-            AuthorizedUserRegistrationDto authDto = new AuthorizedUserRegistrationDto(emailText, userTypeText, companyNameText, companyRegisterNoText, reTypePasswordText, phoneNoText, userName);
-            DatabaseReference drv=FirebaseDatabase.getInstance().getReference(userTypeText);
+        } else if (userTypeText.equals("Vendor")) {
+            AuthorizedUserRegistrationDto authDto = new AuthorizedUserRegistrationDto(emailText, userTypeText, companyNameText, companyRegisterNoText, reTypePasswordText, phoneNoText, userName, establishmentYearText, sourceTypeText);
+            DatabaseReference drv = FirebaseDatabase.getInstance().getReference(userTypeText);
             drv.child(userName).setValue(authDto);
+        }
+    }
+
+    private boolean validateEstablishmentYear() {
+        if (establishmentYearText.equals("")) {
+            establishmentyear.setError("Enter Establishment Type");
+            establishmentyear.setErrorEnabled(true);
+            return false;
+        } else {
+            establishmentyear.setError(null);
+            establishmentyear.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+    private boolean validateSourceType() {
+        if (sourceTypeText.equals("")) {
+            sourceType.setError("Enter Source Type");
+            sourceType.setErrorEnabled(true);
+            return false;
+        } else {
+            sourceType.setError(null);
+            sourceType.setErrorEnabled(false);
+            return true;
         }
     }
 
@@ -218,6 +248,8 @@ public class AuthorizedUserRegistration extends AppCompatActivity {
         passwordText = password.getEditText().getText().toString();
         reTypePasswordText = reTypePassword.getEditText().getText().toString();
         phoneNoText = phoneNo.getEditText().getText().toString();
+        sourceTypeText = sourceType.getEditText().getText().toString();
+        establishmentYearText = establishmentyear.getEditText().getText().toString();
     }
 
     private void initializeViews() {
@@ -230,5 +262,7 @@ public class AuthorizedUserRegistration extends AppCompatActivity {
         registerButton = findViewById(R.id.authorizedRegisterPage_registerButton);
         userType = findViewById(R.id.authorizedRegisterPage_radioGroup);
         relativeLayout = findViewById(R.id.authorizedRegisterPage_relLayout);
+        sourceType = findViewById(R.id.authorizedRegisterPage_resourceType);
+        establishmentyear = findViewById(R.id.authorizedRegisterPage_establishmentYear);
     }
 }

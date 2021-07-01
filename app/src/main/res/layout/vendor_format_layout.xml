@@ -1,34 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
         android:id="@+id/vendor_cardView"
-        android:layout_centerHorizontal="true">
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:padding="10dp"
+        app:cardCornerRadius="10dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/vendor_cardView_nameText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/vendor_cardView_nameText"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
                 android:text="Vendor Name : "
                 android:textSize="18sp"
-                android:textStyle="italic"/>
+                android:textStyle="italic" />
 
             <TextView
+                android:id="@+id/vendor_cardView_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/vendor_cardView_nameText"
                 android:layout_marginLeft="30dp"
-                android:id="@+id/vendor_cardView_name"
-                android:text="Vendor Name : "
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/vendor_cardView_nameText"
+                android:text="Vendor Name"
                 android:textSize="18sp"
-                android:textStyle="italic"/>
+                android:textStyle="italic" />
+
+            <TextView
+                android:id="@+id/vendor_cardView_sourceTypeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/vendor_cardView_nameText"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:text="Resource Type : "
+                android:textSize="18sp"
+                android:textStyle="italic" />
+
+            <TextView
+                android:id="@+id/vendor_cardView_sourceType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/vendor_cardView_name"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/vendor_cardView_sourceTypeText"
+                android:text="Resource type"
+                android:textSize="18sp"
+                android:textStyle="italic" />
+
+            <TextView
+                android:id="@+id/vendor_cardView_establishmentYearText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/vendor_cardView_sourceTypeText"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:text="Establishment Year : "
+                android:textSize="18sp"
+                android:textStyle="italic" />
+
+            <TextView
+                android:id="@+id/vendor_cardView_establishmentYear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/vendor_cardView_sourceType"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="15dp"
+                android:layout_toRightOf="@+id/vendor_cardView_establishmentYearText"
+                android:text="year"
+                android:textSize="18sp"
+                android:textStyle="italic" />
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_toRightOf="@+id/vendor_cardView_establishmentYearText"
+                android:layout_marginLeft="100dp"
+                android:layout_below="@+id/vendor_cardView_sourceType"
+                android:src="@drawable/ic_call"
+                android:layout_marginTop="11dp"/>
+
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

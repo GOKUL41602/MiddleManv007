@@ -9,11 +9,13 @@ public class AuthorizedUserRegistrationDto {
     private String password;
     private String phoneNo;
     private String userName;
+    private String yearOfEstablish;
+    private String resourceType;
 
     public AuthorizedUserRegistrationDto() {
     }
 
-    public AuthorizedUserRegistrationDto(String email, String userType, String companyName, String companyLicenceNo, String password, String phoneNo, String userName) {
+    public AuthorizedUserRegistrationDto(String email, String userType, String companyName, String companyLicenceNo, String password, String phoneNo, String userName, String yearOfEstablish, String resourceType) {
         this.email = email;
         this.userType = userType;
         this.companyName = companyName;
@@ -21,6 +23,24 @@ public class AuthorizedUserRegistrationDto {
         this.password = password;
         this.phoneNo = phoneNo;
         this.userName = userName;
+        this.yearOfEstablish = yearOfEstablish;
+        this.resourceType = resourceType;
+    }
+
+    public String getResourceType() {
+        return resourceType;
+    }
+
+    public void setResourceType(String resourceType) {
+        this.resourceType = resourceType;
+    }
+
+    public String getYearOfEstablish() {
+        return yearOfEstablish;
+    }
+
+    public void setYearOfEstablish(String yearOfEstablish) {
+        this.yearOfEstablish = yearOfEstablish;
     }
 
     public String getUserName() {
@@ -90,6 +110,8 @@ public class AuthorizedUserRegistrationDto {
                 ", password='" + password + '\'' +
                 ", phoneNo='" + phoneNo + '\'' +
                 ", userName='" + userName + '\'' +
+                ", yearOfEstablish='" + yearOfEstablish + '\'' +
+                ", resourceType='" + resourceType + '\'' +
                 '}';
     }
 }

@@ -35,7 +35,7 @@ public class GalleryFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
         FirebaseRecyclerOptions<AuthorizedUserRegistrationDto> options
                 = new FirebaseRecyclerOptions.Builder<AuthorizedUserRegistrationDto>()
-                .setQuery(FirebaseDatabase.getInstance().getReference("Company"), AuthorizedUserRegistrationDto.class)
+                .setQuery(FirebaseDatabase.getInstance().getReference("Vendor"), AuthorizedUserRegistrationDto.class)
                 .build();
         adapter = new VendorRecyclerAdapter(options, root.getContext());
         recyclerView.setAdapter(adapter);

@@ -22,6 +22,8 @@ public class VendorRecyclerAdapter extends FirebaseRecyclerAdapter<AuthorizedUse
     @Override
     protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull AuthorizedUserRegistrationDto model) {
         holder.vendorName.setText(model.getUserName());
+        holder.establishmentYear.setText(model.getYearOfEstablish());
+        holder.sourceType.setText(model.getResourceType());
     }
 
     @NonNull
@@ -34,7 +36,7 @@ public class VendorRecyclerAdapter extends FirebaseRecyclerAdapter<AuthorizedUse
     public class ViewHolder extends RecyclerView.ViewHolder
     {
         private CardView cardView;
-        private TextView vendorName;
+        private TextView vendorName,sourceType,establishmentYear;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             initializeViews(itemView);
@@ -44,6 +46,8 @@ public class VendorRecyclerAdapter extends FirebaseRecyclerAdapter<AuthorizedUse
         {
             cardView=view.findViewById(R.id.vendor_cardView);
             vendorName=view.findViewById(R.id.vendor_cardView_name);
+            sourceType=view.findViewById(R.id.vendor_cardView_sourceType);
+            establishmentYear=view.findViewById(R.id.vendor_cardView_establishmentYear);
         }
     }
 }
