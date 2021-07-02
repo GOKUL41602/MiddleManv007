@@ -20,8 +20,7 @@ public class SalesMelaFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
          root = inflater.inflate(R.layout.fragment_sales_mela, container, false);
-
-
+         
         return root;
     }
 

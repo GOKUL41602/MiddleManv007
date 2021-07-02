@@ -6,15 +6,35 @@ public class AuthorizedCompanyRequestDto {
     private String stocksNeeded;
     private String RequiredWithIn;
     private String contactNo;
+    private String userType;
+    private String key;
 
     public AuthorizedCompanyRequestDto() {
     }
 
-    public AuthorizedCompanyRequestDto(String materialType, String stocksNeeded, String requiredWithIn, String contactNo) {
+    public AuthorizedCompanyRequestDto(String materialType, String stocksNeeded, String requiredWithIn, String contactNo, String userType, String key) {
         this.materialType = materialType;
         this.stocksNeeded = stocksNeeded;
         RequiredWithIn = requiredWithIn;
         this.contactNo = contactNo;
+        this.userType = userType;
+        this.key = key;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 
     public String getMaterialType() {
@@ -56,6 +76,8 @@ public class AuthorizedCompanyRequestDto {
                 ", stocksNeeded='" + stocksNeeded + '\'' +
                 ", RequiredWithIn='" + RequiredWithIn + '\'' +
                 ", contactNo='" + contactNo + '\'' +
+                ", userType='" + userType + '\'' +
+                ", key='" + key + '\'' +
                 '}';
     }
 }

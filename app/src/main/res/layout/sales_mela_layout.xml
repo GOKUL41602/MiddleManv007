@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/sales_mela_companyCardView"
+        android:layout_width="370dp"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_centerHorizontal="true"
+        app:cardCornerRadius="10dp">
+
+        <RelativeLayout
+            android:id="@+id/sales_mela_companyRelLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/companyMaterialTypeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Material Type : "
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/companyMaterialType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/companyMaterialTypeText"
+                android:text="Material Type"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/companyStockNeededText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/companyMaterialTypeText"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="6dp"
+                android:text="Stock Needed : "
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/companyStockNeeded"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/companyMaterialType"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="6dp"
+                android:layout_toRightOf="@+id/companyStockNeededText"
+                android:text="Stock needed"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/companyRequiredWithInText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/companyStockNeededText"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="6dp"
+                android:text="Required WithIn : "
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/companyRequiredWithIn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/companyStockNeeded"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="6dp"
+                android:layout_toRightOf="@+id/companyRequiredWithInText"
+                android:text="required withiin"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/companyContactNoText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/companyRequiredWithInText"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="6dp"
+                android:text="Contact No : "
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/companyContactNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/companyRequiredWithIn"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="6dp"
+                android:layout_toRightOf="@+id/companyContactNoText"
+                android:text="contact no"
+                android:textSize="18sp" />
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/sales_mela_vendorCardView"
+        android:layout_width="370dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        app:cardCornerRadius="10dp">
+
+        <RelativeLayout
+            android:id="@+id/sales_mela_vendorRelLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/vendorMaterialTypeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Material Type : "
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/vendorMaterialType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/vendorMaterialTypeText"
+                android:text="Material Type"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/vendorStockAvailableText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/vendorMaterialTypeText"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="6dp"
+                android:text="Stock Needed : "
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/vendorStockAvailable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/vendorMaterialTypeText"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="6dp"
+                android:layout_toRightOf="@+id/vendorStockAvailableText"
+                android:text="Stock needed"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/vendorSoldWithDateText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/vendorStockAvailableText"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="6dp"
+                android:text="Required WithIn : "
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/vendorSoldWithDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/vendorStockAvailable"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="6dp"
+                android:layout_toRightOf="@+id/vendorSoldWithDateText"
+                android:text="required withiin"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/vendorContactNoText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/vendorSoldWithDateText"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="6dp"
+                android:text="Contact No : "
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/vendorContactNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/vendorSoldWithDate"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="6dp"
+                android:layout_toRightOf="@+id/vendorContactNoText"
+                android:text="contact no"
+                android:textSize="18sp" />
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

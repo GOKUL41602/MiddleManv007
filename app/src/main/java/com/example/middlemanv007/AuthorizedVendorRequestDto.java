@@ -5,15 +5,35 @@ public class AuthorizedVendorRequestDto {
     private String stocksAvailable;
     private String expireWithIn;
     private String contactNo;
+    private String userType;
+    private String key;
 
     public AuthorizedVendorRequestDto() {
     }
 
-    public AuthorizedVendorRequestDto(String materialType, String stocksAvailable, String expireWithIn, String contactNo) {
+    public AuthorizedVendorRequestDto(String materialType, String stocksAvailable, String expireWithIn, String contactNo, String userType, String key) {
         this.materialType = materialType;
         this.stocksAvailable = stocksAvailable;
         this.expireWithIn = expireWithIn;
         this.contactNo = contactNo;
+        this.userType = userType;
+        this.key = key;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 
     public String getMaterialType() {
@@ -55,6 +75,8 @@ public class AuthorizedVendorRequestDto {
                 ", stocksAvailable='" + stocksAvailable + '\'' +
                 ", expireWithIn='" + expireWithIn + '\'' +
                 ", contactNo='" + contactNo + '\'' +
+                ", userType='" + userType + '\'' +
+                ", key='" + key + '\'' +
                 '}';
     }
 }

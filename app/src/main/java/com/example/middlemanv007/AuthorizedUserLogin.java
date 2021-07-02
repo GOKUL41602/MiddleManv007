@@ -62,6 +62,7 @@ public class AuthorizedUserLogin extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(AuthorizedUserLogin.this, AuthorizedUserRegistration.class);
                 intent.putExtra("userName", userName);
+
                 startActivity(intent);
             }
         });
@@ -76,7 +77,6 @@ public class AuthorizedUserLogin extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     String emailFromDB = snapshot.child(userName).child("email").getValue(String.class);
-                    Log.d("email", emailFromDB);
                     if (emailText.equals(emailFromDB)) {
                         email.setError(null);
                         email.setErrorEnabled(false);

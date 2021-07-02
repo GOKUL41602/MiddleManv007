@@ -3,6 +3,7 @@ package com.example.middlemanv007;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -23,6 +24,7 @@ public class AuthorizedCreateRequest extends AppCompatActivity {
     String userName, companyMaterialTypeText, companyStockNeededText, companyRequiredWithInText, companyContactNoText, vendorMaterialTypeText, vendorStockAvailableText, vendorExpireWithInText, vendorContactNoText;
     RadioButton companyRadioBtn, vendorRadioBtn;
     RadioGroup radioGroup;
+    String userType,key;
 
     DatabaseReference reference, reference1, reference2;
 
@@ -61,10 +63,12 @@ public class AuthorizedCreateRequest extends AppCompatActivity {
                         if (validateVendorExpireDate()) {
                             if (validateVendorContactNo()) {
                                 reference = FirebaseDatabase.getInstance().getReference("SalesMela");
-                                AuthorizedVendorRequestDto vendorDto = new AuthorizedVendorRequestDto(vendorMaterialTypeText, vendorStockAvailableText, vendorExpireWithInText, vendorContactNoText);
-                                reference.child(userName).setValue(vendorDto);
+                                userType = "Vendor";
+                                 key = reference.push().getKey();
+                                AuthorizedVendorRequestDto vendorDto = new AuthorizedVendorRequestDto(vendorMaterialTypeText, vendorStockAvailableText, vendorExpireWithInText, vendorContactNoText, userType, key);
+                                reference.push().setValue(vendorDto);
                                 reference1 = FirebaseDatabase.getInstance().getReference("Requests");
-                                reference1.child("Vendor").child(userName).setValue(vendorDto);
+                                reference1.child(userType).child(userName).child(key).setValue(vendorDto);
                                 Toast.makeText(AuthorizedCreateRequest.this, "Vendor Success", Toast.LENGTH_SHORT).show();
                             } else {
                                 validateVendorContactNo();
@@ -86,15 +90,17 @@ public class AuthorizedCreateRequest extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 initializeCompanyStrings();
+                userType = "Company";
                 if (validateCompanyMaterialType()) {
                     if (validateCompanyStocksNeeded()) {
                         if (validateCompanyRequiredWithIn()) {
                             if (validateCompanyContactNo()) {
                                 reference = FirebaseDatabase.getInstance().getReference("SalesMela");
-                                AuthorizedCompanyRequestDto companyDto = new AuthorizedCompanyRequestDto(companyMaterialTypeText, companyStockNeededText, companyRequiredWithInText, companyContactNoText);
-                                reference.child(userName).setValue(companyDto);
+                                 key = reference.push().getKey();
+                                AuthorizedCompanyRequestDto companyDto = new AuthorizedCompanyRequestDto(companyMaterialTypeText, companyStockNeededText, companyRequiredWithInText, companyContactNoText, userType, key);
+                                reference.push().setValue(companyDto);
                                 reference2 = FirebaseDatabase.getInstance().getReference("Requests");
-                                reference1.child("Company").child(userName).setValue(companyDto);
+                                reference2.child(userType).child(userName).child(key).setValue(companyDto);
                                 Toast.makeText(AuthorizedCreateRequest.this, "Company Success", Toast.LENGTH_SHORT).show();
                             } else {
                                 validateCompanyContactNo();
