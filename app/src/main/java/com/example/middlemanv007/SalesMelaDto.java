@@ -1,6 +1,6 @@
 package com.example.middlemanv007;
 
-public class AuthorizedCompanyRequestDto {
+public class SalesMelaDto {
 
     private String companyMaterialType;
     private String companyStocksNeeded;
@@ -8,17 +8,13 @@ public class AuthorizedCompanyRequestDto {
     private String companyContactNo;
     private String userType;
     private String companyKey;
+    private String VendorMaterialType;
+    private String vendorStocksAvailable;
+    private String vendorExpireWithIn;
+    private String vendorContactNo;
+    private String vendorKey;
 
-    public AuthorizedCompanyRequestDto() {
-    }
-
-    public AuthorizedCompanyRequestDto(String companyMaterialType, String companyStocksNeeded, String companyRequiredWithIn, String companyContactNo, String userType, String companyKey) {
-        this.companyMaterialType = companyMaterialType;
-        this.companyStocksNeeded = companyStocksNeeded;
-        this.companyRequiredWithIn = companyRequiredWithIn;
-        this.companyContactNo = companyContactNo;
-        this.userType = userType;
-        this.companyKey = companyKey;
+    public SalesMelaDto() {
     }
 
     public String getCompanyMaterialType() {
@@ -69,15 +65,60 @@ public class AuthorizedCompanyRequestDto {
         this.companyKey = companyKey;
     }
 
+    public String getVendorMaterialType() {
+        return VendorMaterialType;
+    }
+
+    public void setVendorMaterialType(String vendorMaterialType) {
+        VendorMaterialType = vendorMaterialType;
+    }
+
+    public String getVendorStocksAvailable() {
+        return vendorStocksAvailable;
+    }
+
+    public void setVendorStocksAvailable(String vendorStocksAvailable) {
+        this.vendorStocksAvailable = vendorStocksAvailable;
+    }
+
+    public String getVendorExpireWithIn() {
+        return vendorExpireWithIn;
+    }
+
+    public void setVendorExpireWithIn(String vendorExpireWithIn) {
+        this.vendorExpireWithIn = vendorExpireWithIn;
+    }
+
+    public String getVendorContactNo() {
+        return vendorContactNo;
+    }
+
+    public void setVendorContactNo(String vendorContactNo) {
+        this.vendorContactNo = vendorContactNo;
+    }
+
+    public String getVendorKey() {
+        return vendorKey;
+    }
+
+    public void setVendorKey(String vendorKey) {
+        this.vendorKey = vendorKey;
+    }
+
     @Override
     public String toString() {
-        return "AuthorizedCompanyRequestDto{" +
+        return "SalesMelaDto{" +
                 "companyMaterialType='" + companyMaterialType + '\'' +
                 ", companyStocksNeeded='" + companyStocksNeeded + '\'' +
                 ", companyRequiredWithIn='" + companyRequiredWithIn + '\'' +
                 ", companyContactNo='" + companyContactNo + '\'' +
                 ", userType='" + userType + '\'' +
                 ", companyKey='" + companyKey + '\'' +
+                ", VendorMaterialType='" + VendorMaterialType + '\'' +
+                ", vendorStocksAvailable='" + vendorStocksAvailable + '\'' +
+                ", vendorExpireWithIn='" + vendorExpireWithIn + '\'' +
+                ", vendorContactNo='" + vendorContactNo + '\'' +
+                ", vendorKey='" + vendorKey + '\'' +
                 '}';
     }
 }

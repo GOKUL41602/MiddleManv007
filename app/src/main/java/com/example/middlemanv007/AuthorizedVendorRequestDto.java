@@ -1,31 +1,55 @@
 package com.example.middlemanv007;
 
 public class AuthorizedVendorRequestDto {
-    private String materialType;
-    private String stocksAvailable;
-    private String expireWithIn;
-    private String contactNo;
+    private String VendorMaterialType;
+    private String vendorStocksAvailable;
+    private String vendorExpireWithIn;
+    private String vendorContactNo;
     private String userType;
-    private String key;
+    private String vendorKey;
 
     public AuthorizedVendorRequestDto() {
     }
 
-    public AuthorizedVendorRequestDto(String materialType, String stocksAvailable, String expireWithIn, String contactNo, String userType, String key) {
-        this.materialType = materialType;
-        this.stocksAvailable = stocksAvailable;
-        this.expireWithIn = expireWithIn;
-        this.contactNo = contactNo;
+    public AuthorizedVendorRequestDto(String vendorMaterialType, String vendorStocksAvailable, String vendorExpireWithIn, String vendorContactNo, String userType, String vendorKey) {
+        VendorMaterialType = vendorMaterialType;
+        this.vendorStocksAvailable = vendorStocksAvailable;
+        this.vendorExpireWithIn = vendorExpireWithIn;
+        this.vendorContactNo = vendorContactNo;
         this.userType = userType;
-        this.key = key;
+        this.vendorKey = vendorKey;
     }
 
-    public String getKey() {
-        return key;
+    public String getVendorMaterialType() {
+        return VendorMaterialType;
     }
 
-    public void setKey(String key) {
-        this.key = key;
+    public void setVendorMaterialType(String vendorMaterialType) {
+        VendorMaterialType = vendorMaterialType;
+    }
+
+    public String getVendorStocksAvailable() {
+        return vendorStocksAvailable;
+    }
+
+    public void setVendorStocksAvailable(String vendorStocksAvailable) {
+        this.vendorStocksAvailable = vendorStocksAvailable;
+    }
+
+    public String getVendorExpireWithIn() {
+        return vendorExpireWithIn;
+    }
+
+    public void setVendorExpireWithIn(String vendorExpireWithIn) {
+        this.vendorExpireWithIn = vendorExpireWithIn;
+    }
+
+    public String getVendorContactNo() {
+        return vendorContactNo;
+    }
+
+    public void setVendorContactNo(String vendorContactNo) {
+        this.vendorContactNo = vendorContactNo;
     }
 
     public String getUserType() {
@@ -36,47 +60,23 @@ public class AuthorizedVendorRequestDto {
         this.userType = userType;
     }
 
-    public String getMaterialType() {
-        return materialType;
+    public String getVendorKey() {
+        return vendorKey;
     }
 
-    public void setMaterialType(String materialType) {
-        this.materialType = materialType;
-    }
-
-    public String getStocksAvailable() {
-        return stocksAvailable;
-    }
-
-    public void setStocksAvailable(String stocksAvailable) {
-        this.stocksAvailable = stocksAvailable;
-    }
-
-    public String getExpireWithIn() {
-        return expireWithIn;
-    }
-
-    public void setExpireWithIn(String expireWithIn) {
-        this.expireWithIn = expireWithIn;
-    }
-
-    public String getContactNo() {
-        return contactNo;
-    }
-
-    public void setContactNo(String contactNo) {
-        this.contactNo = contactNo;
+    public void setVendorKey(String vendorKey) {
+        this.vendorKey = vendorKey;
     }
 
     @Override
     public String toString() {
         return "AuthorizedVendorRequestDto{" +
-                "materialType='" + materialType + '\'' +
-                ", stocksAvailable='" + stocksAvailable + '\'' +
-                ", expireWithIn='" + expireWithIn + '\'' +
-                ", contactNo='" + contactNo + '\'' +
+                "VendorMaterialType='" + VendorMaterialType + '\'' +
+                ", vendorStocksAvailable='" + vendorStocksAvailable + '\'' +
+                ", vendorExpireWithIn='" + vendorExpireWithIn + '\'' +
+                ", vendorContactNo='" + vendorContactNo + '\'' +
                 ", userType='" + userType + '\'' +
-                ", key='" + key + '\'' +
+                ", vendorKey='" + vendorKey + '\'' +
                 '}';
     }
 }

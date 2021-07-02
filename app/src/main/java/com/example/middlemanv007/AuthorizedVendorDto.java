@@ -3,9 +3,9 @@ package com.example.middlemanv007;
 public class AuthorizedVendorDto {
 
     private String vendorName;
-    private String vendorEmail;
+    private String email;
     private String vendorPhoneNo;
-    private String vendorPassword;
+    private String password;
     private String vendorStartYear;
     private String vendorSourceType;
     private String userName;
@@ -14,11 +14,11 @@ public class AuthorizedVendorDto {
     public AuthorizedVendorDto() {
     }
 
-    public AuthorizedVendorDto(String vendorName, String vendorEmail, String vendorPhoneNo, String vendorPassword, String vendorStartYear, String vendorSourceType, String userName, String userType) {
+    public AuthorizedVendorDto(String vendorName, String email, String vendorPhoneNo, String password, String vendorStartYear, String vendorSourceType, String userName, String userType) {
         this.vendorName = vendorName;
-        this.vendorEmail = vendorEmail;
+        this.email = email;
         this.vendorPhoneNo = vendorPhoneNo;
-        this.vendorPassword = vendorPassword;
+        this.password = password;
         this.vendorStartYear = vendorStartYear;
         this.vendorSourceType = vendorSourceType;
         this.userName = userName;
@@ -33,12 +33,12 @@ public class AuthorizedVendorDto {
         this.vendorName = vendorName;
     }
 
-    public String getVendorEmail() {
-        return vendorEmail;
+    public String getemail() {
+        return email;
     }
 
-    public void setVendorEmail(String vendorEmail) {
-        this.vendorEmail = vendorEmail;
+    public void setemail(String email) {
+        this.email = email;
     }
 
     public String getVendorPhoneNo() {
@@ -49,12 +49,12 @@ public class AuthorizedVendorDto {
         this.vendorPhoneNo = vendorPhoneNo;
     }
 
-    public String getVendorPassword() {
-        return vendorPassword;
+    public String getpassword() {
+        return password;
     }
 
-    public void setVendorPassword(String vendorPassword) {
-        this.vendorPassword = vendorPassword;
+    public void setpassword(String password) {
+        this.password = password;
     }
 
     public String getVendorStartYear() {
@@ -93,9 +93,9 @@ public class AuthorizedVendorDto {
     public String toString() {
         return "AuthorizedVendorDto{" +
                 "vendorName='" + vendorName + '\'' +
-                ", vendorEmail='" + vendorEmail + '\'' +
+                ", email='" + email + '\'' +
                 ", vendorPhoneNo='" + vendorPhoneNo + '\'' +
-                ", vendorPassword='" + vendorPassword + '\'' +
+                ", password='" + password + '\'' +
                 ", vendorStartYear='" + vendorStartYear + '\'' +
                 ", vendorSourceType='" + vendorSourceType + '\'' +
                 ", userName='" + userName + '\'' +
