@@ -2,26 +2,44 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/sales_mela_companyCardView"
         android:layout_width="370dp"
         android:layout_height="wrap_content"
-        android:visibility="gone"
         android:layout_centerHorizontal="true"
+        android:visibility="visible"
         app:cardCornerRadius="10dp">
 
         <RelativeLayout
             android:id="@+id/sales_mela_companyRelLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp">
+            android:layout_height="match_parent">
 
+            <TextView
+                android:id="@+id/companyTypeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Type : "
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/companyType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/companyTypeText"
+                android:text="Type"
+                android:textSize="18sp" />
             <TextView
                 android:id="@+id/companyMaterialTypeText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/companyTypeText"
+                android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
                 android:text="Material Type : "
                 android:textSize="18sp" />
@@ -31,6 +49,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
+                android:layout_below="@+id/companyType"
+                android:layout_marginTop="10dp"
                 android:layout_toRightOf="@+id/companyMaterialTypeText"
                 android:text="Material Type"
                 android:textSize="18sp" />
@@ -107,6 +127,7 @@
         android:layout_width="370dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:visibility="gone"
         app:cardCornerRadius="10dp">
 
         <RelativeLayout
@@ -116,10 +137,29 @@
             android:layout_marginTop="10dp">
 
             <TextView
-                android:id="@+id/vendorMaterialTypeText"
+                android:id="@+id/vendorTypeText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
+                android:text="Type : "
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/vendorType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/vendorTypeText"
+                android:text="Type"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/vendorMaterialTypeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/vendorTypeText"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
                 android:text="Material Type : "
                 android:textSize="18sp" />
 
@@ -127,7 +167,9 @@
                 android:id="@+id/vendorMaterialType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/vendorType"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
                 android:layout_toRightOf="@+id/vendorMaterialTypeText"
                 android:text="Material Type"
                 android:textSize="18sp" />
@@ -139,7 +181,7 @@
                 android:layout_below="@+id/vendorMaterialTypeText"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="6dp"
-                android:text="Stock Needed : "
+                android:text="Stock Available : "
                 android:textSize="18sp" />
 
             <TextView
@@ -150,7 +192,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="6dp"
                 android:layout_toRightOf="@+id/vendorStockAvailableText"
-                android:text="Stock needed"
+                android:text="Stock available"
                 android:textSize="18sp" />
 
             <TextView
@@ -160,7 +202,7 @@
                 android:layout_below="@+id/vendorStockAvailableText"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="6dp"
-                android:text="Required WithIn : "
+                android:text="Tobe Sold WithIn : "
                 android:textSize="18sp" />
 
             <TextView
@@ -171,7 +213,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="6dp"
                 android:layout_toRightOf="@+id/vendorSoldWithDateText"
-                android:text="required withiin"
+                android:text="tobe sold withiin"
                 android:textSize="18sp" />
 
             <TextView

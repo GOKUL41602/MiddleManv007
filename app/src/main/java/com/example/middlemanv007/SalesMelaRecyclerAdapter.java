@@ -25,16 +25,18 @@ public class SalesMelaRecyclerAdapter extends FirebaseRecyclerAdapter<SalesMelaD
         {
             holder.vendorCardView.setVisibility(View.VISIBLE);
             holder.companyCardView.setVisibility(View.GONE);
+            holder.vendorType.setText(model.getUserType());
             holder.vendorMaterialType.setText(model.getVendorMaterialType());
             holder.vendorStocksAvailable.setText(model.getVendorStocksAvailable());
             holder.vendorExpireWithIn.setText(model.getVendorExpireWithIn());
             holder.vendorContactNo.setText(model.getVendorContactNo());
         }
-        else if(model.getUserType().equals("Company"))
+        if(model.getUserType().equals("Company"))
         {
             holder.companyCardView.setVisibility(View.VISIBLE);
             holder.vendorCardView.setVisibility(View.GONE);
             holder.companyMaterialType.setText(model.getCompanyMaterialType());
+            holder.companyType.setText(model.getUserType());
             holder.companyStocksNeeded.setText(model.getCompanyStocksNeeded());
             holder.companyRequiredWithIn.setText(model.getCompanyRequiredWithIn());
             holder.companyContactNo.setText(model.getCompanyContactNo());
@@ -52,7 +54,7 @@ public class SalesMelaRecyclerAdapter extends FirebaseRecyclerAdapter<SalesMelaD
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private CardView vendorCardView, companyCardView;
-        private TextView vendorMaterialType, vendorStocksAvailable, vendorExpireWithIn, vendorContactNo, companyMaterialType, companyStocksNeeded, companyRequiredWithIn, companyContactNo;
+        private TextView vendorType,companyType,vendorMaterialType, vendorStocksAvailable, vendorExpireWithIn, vendorContactNo, companyMaterialType, companyStocksNeeded, companyRequiredWithIn, companyContactNo;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -61,6 +63,8 @@ public class SalesMelaRecyclerAdapter extends FirebaseRecyclerAdapter<SalesMelaD
 
         private void initializeViews(View view) {
             vendorMaterialType = view.findViewById(R.id.vendorMaterialType);
+            vendorType=view.findViewById(R.id.vendorType);
+            companyType=view.findViewById(R.id.companyType);
             vendorStocksAvailable = view.findViewById(R.id.vendorStockAvailable);
             vendorExpireWithIn = view.findViewById(R.id.vendorSoldWithDate);
             vendorContactNo = view.findViewById(R.id.vendorContactNo);
