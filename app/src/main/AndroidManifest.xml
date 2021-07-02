@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MiddleManv007">
-        <activity android:name=".AuthorizedUserRegistration"></activity>
+        <activity android:name=".AuthorizedCreateRequest"></activity>
+        <activity android:name=".AuthorizedUserRegistration" />
         <activity android:name=".AuthorizedUserLogin" />
         <activity android:name=".ForgetPassword" />
         <activity

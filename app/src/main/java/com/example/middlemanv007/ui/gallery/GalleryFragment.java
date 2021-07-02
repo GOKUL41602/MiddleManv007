@@ -18,7 +18,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class GalleryFragment extends Fragment {
 
-
     private View root;
     private RecyclerView recyclerView;
     private CompanyRecyclerAdapter adapter;
@@ -38,13 +37,11 @@ public class GalleryFragment extends Fragment {
         recyclerView.setNestedScrollingEnabled(false);
         return root;
     }
-
     @Override
     public void onStart() {
         super.onStart();
         adapter.startListening();
     }
-
     @Override
     public void onStop() {
         super.onStop();

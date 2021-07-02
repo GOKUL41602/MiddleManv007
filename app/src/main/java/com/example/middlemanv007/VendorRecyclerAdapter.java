@@ -19,7 +19,6 @@ public class VendorRecyclerAdapter extends FirebaseRecyclerAdapter<AuthorizedVen
         super(options);
     }
 
-
     @Override
     protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull AuthorizedVendorDto model) {
 
