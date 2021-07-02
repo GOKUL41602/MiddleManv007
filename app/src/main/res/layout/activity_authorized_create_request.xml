@@ -10,10 +10,16 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/authorizedCreateRequest_title"/>
+        android:id="@+id/authorizedCreateRequest_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:text="Create a Request"
+        android:textSize="30sp"/>
 
     <ScrollView
         android:layout_width="match_parent"
+        android:layout_below="@+id/authorizedCreateRequest_title"
+        android:layout_centerHorizontal="true"
         android:layout_height="match_parent">
 
         <RelativeLayout
@@ -25,7 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="30dp"
                 android:orientation="horizontal">
 
                 <RadioButton
@@ -52,7 +58,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/authorizedRequestRadioGrp"
-                android:visibility="visible">
+                android:visibility="gone">
 
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -136,7 +142,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/authorizedRequestRadioGrp"
-                android:visibility="gone">
+                android:visibility="visible">
 
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -166,12 +172,12 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="290dp"
                         android:layout_height="wrap_content"
-                        android:hint="Stocks Needed" />
+                        android:hint="Stocks Available" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/authorizedCreateRequest_expireDate"
+                    android:id="@+id/authorizedCreateRequest_vendorExpireDate"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="290dp"
                     android:layout_height="wrap_content"
@@ -182,7 +188,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="290dp"
                         android:layout_height="wrap_content"
-                        android:hint="Required withIn" />
+                        android:hint="Expire withIn" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -191,7 +197,7 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="290dp"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/authorizedCreateRequest_expireDate"
+                    android:layout_below="@id/authorizedCreateRequest_vendorExpireDate"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="40dp">
 

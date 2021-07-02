@@ -84,7 +84,9 @@ public class AuthorizedUserLogin extends AppCompatActivity {
                         if (passwordText.equals(passwordFromDB)) {
                             password.setError(null);
                             password.setErrorEnabled(false);
-                            Snackbar.make(relativeLayout, "Login Successful", Snackbar.LENGTH_LONG).show();
+                            Intent intent=new Intent(AuthorizedUserLogin.this,AuthorizedCreateRequest.class);
+                            intent.putExtra("userName",userName);
+                            startActivity(intent);
                         } else {
                             password.setError("Incorrect Password");
                             password.setErrorEnabled(true);
