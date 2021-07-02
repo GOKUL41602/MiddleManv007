@@ -81,11 +81,13 @@ public class AuthorizedUserLogin extends AppCompatActivity {
                         email.setError(null);
                         email.setErrorEnabled(false);
                         String passwordFromDB = snapshot.child(userName).child("password").getValue(String.class);
+                        String userType=snapshot.child(userName).child("userType").getValue(String.class);
                         if (passwordText.equals(passwordFromDB)) {
                             password.setError(null);
                             password.setErrorEnabled(false);
-                            Intent intent = new Intent(AuthorizedUserLogin.this, AuthorizedCreateRequest.class);
+                            Intent intent = new Intent(AuthorizedUserLogin.this, AuthorizedUserRequestsView.class);
                             intent.putExtra("userName", userName);
+                            intent.putExtra("userType",userType);
                             startActivity(intent);
                         } else {
                             password.setError("Incorrect Password");
