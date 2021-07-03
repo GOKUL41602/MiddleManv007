@@ -1,3 +1,4 @@
+
 package com.example.middlemanv007;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,18 +25,17 @@ public class AuthorizedUserRequestsView extends AppCompatActivity {
         try {
             userName = getIntent().getStringExtra("userName");
             userType = getIntent().getStringExtra("userType");
+            Log.d("userName",userName);
 
         } catch (Exception e) {
             userName = null;
         }
         recyclerView = findViewById(R.id.authorizedUserRequestsViewRecView);
-        Log.d("userName",userName);
-        Log.d("userType",userType);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         FirebaseRecyclerOptions<SalesMelaDto> options
                 = new FirebaseRecyclerOptions.Builder<SalesMelaDto>()
-                .setQuery(FirebaseDatabase.getInstance().getReference("Requests/"+userType+"/"+userName), SalesMelaDto.class)
+                .setQuery(FirebaseDatabase.getInstance().getReference("Requests/"+userName), SalesMelaDto.class)
                 .build();
         adapter = new AuthorizedUserRequestsViewRecAdapter(options,userType);
         recyclerView.setAdapter(adapter);

@@ -68,7 +68,7 @@ public class AuthorizedCreateRequest extends AppCompatActivity {
                                 AuthorizedVendorRequestDto vendorDto = new AuthorizedVendorRequestDto(vendorMaterialTypeText, vendorStockAvailableText, vendorExpireWithInText, vendorContactNoText, userType, key);
                                 reference.push().setValue(vendorDto);
                                 reference1 = FirebaseDatabase.getInstance().getReference("Requests");
-                                reference1.child(userType).child(userName).child(key).setValue(vendorDto);
+                                reference1.child(userName).child(key).setValue(vendorDto);
                                 Toast.makeText(AuthorizedCreateRequest.this, "Vendor Success", Toast.LENGTH_SHORT).show();
                             } else {
                                 validateVendorContactNo();
@@ -100,7 +100,7 @@ public class AuthorizedCreateRequest extends AppCompatActivity {
                                 AuthorizedCompanyRequestDto companyDto = new AuthorizedCompanyRequestDto(companyMaterialTypeText, companyStockNeededText, companyRequiredWithInText, companyContactNoText, userType, key);
                                 reference.push().setValue(companyDto);
                                 reference2 = FirebaseDatabase.getInstance().getReference("Requests");
-                                reference2.child(userType).child(userName).child(key).setValue(companyDto);
+                                reference2.child(userName).child(key).setValue(companyDto);
                                 Toast.makeText(AuthorizedCreateRequest.this, "Company Success", Toast.LENGTH_SHORT).show();
                             } else {
                                 validateCompanyContactNo();

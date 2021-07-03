@@ -25,7 +25,7 @@ public class AuthorizedUserRequestsViewRecAdapter extends FirebaseRecyclerAdapte
 
     @Override
     protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull SalesMelaDto model) {
-        if(model.getUserType().equals(userType))
+        if(model.getUserType().equals("Vendor"))
         {
             holder.vendorCardView.setVisibility(View.VISIBLE);
             holder.companyCardView.setVisibility(View.GONE);
@@ -35,7 +35,7 @@ public class AuthorizedUserRequestsViewRecAdapter extends FirebaseRecyclerAdapte
             holder.vendorExpireWithIn.setText(model.getVendorExpireWithIn());
             holder.vendorContactNo.setText(model.getVendorContactNo());
         }
-        if(model.getUserType().equals(userType))
+        if(model.getUserType().equals("Company"))
         {
             holder.companyCardView.setVisibility(View.VISIBLE);
             holder.vendorCardView.setVisibility(View.GONE);
