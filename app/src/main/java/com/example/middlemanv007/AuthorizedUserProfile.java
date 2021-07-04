@@ -1,6 +1,7 @@
 package com.example.middlemanv007;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -9,12 +10,15 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+import org.jetbrains.annotations.NotNull;
 
 public class AuthorizedUserProfile extends AppCompatActivity {
 
@@ -33,8 +37,125 @@ public class AuthorizedUserProfile extends AppCompatActivity {
         } catch (Exception e) {
             userName = null;
         }
-        getUserTypeAndLoadDetails();
         initializeViews();
+        getUserTypeAndLoadDetails();
+        companyUpdateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                initializeString();
+                if (validateCompanyName()) {
+                    if (validateCompanyResourceType()) {
+                        if (validateCompanyLicenceNo()) {
+                            if (validateCompanyEmail()) {
+                                if (validateCompanyEstablishYear()) {
+                                    reference = FirebaseDatabase.getInstance().getReference("AuthorizedUsersDto");
+                                    Query query = reference.orderByChild("userName").startAt(userName).endAt(userName + "\uf8ff");
+                                    query.addChildEventListener(new ChildEventListener() {
+                                        @Override
+                                        public void onChildAdded(@NonNull @NotNull DataSnapshot snapshot, @Nullable @org.jetbrains.annotations.Nullable String previousChildName) {
+                                            if (snapshot.exists()) {
+                                                reference.child(userName).child("companyName").setValue(companyNameText);
+                                                reference.child(userName).child("resourceType").setValue(companyResourceTypeText);
+                                                reference.child(userName).child("email").setValue(companyEmailText);
+                                                reference.child(userName).child("companyLicenceNo").setValue(companyLicenceNoText);
+                                                reference.child(userName).child("yearOfEstablish").setValue(companyEstablishmentYearText);
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onChildChanged(@NonNull @NotNull DataSnapshot snapshot, @Nullable @org.jetbrains.annotations.Nullable String previousChildName) {
+
+                                        }
+
+                                        @Override
+                                        public void onChildRemoved(@NonNull @NotNull DataSnapshot snapshot) {
+
+                                        }
+
+                                        @Override
+                                        public void onChildMoved(@NonNull @NotNull DataSnapshot snapshot, @Nullable @org.jetbrains.annotations.Nullable String previousChildName) {
+
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+                                        }
+                                    });
+
+                                } else {
+                                    validateCompanyEstablishYear();
+                                }
+                            } else {
+                                validateCompanyEmail();
+                            }
+                        } else {
+                            validateCompanyLicenceNo();
+                        }
+                    } else {
+                        validateCompanyResourceType();
+                    }
+                } else {
+                    validateCompanyName();
+                }
+            }
+        });
+        vendorUpdateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                initializeString();
+                if (validateVendorName()) {
+                    if (validateVendorResourceType()) {
+                        if (validateVendorEmail()) {
+                            if (validateVendorStartYear()) {
+                                reference = FirebaseDatabase.getInstance().getReference("AuthorizedUsersDto");
+                                Query query = reference.orderByChild("userName").startAt(userName).endAt(userName + "\uf8ff");
+                                query.addChildEventListener(new ChildEventListener() {
+                                    @Override
+                                    public void onChildAdded(@NonNull @NotNull DataSnapshot snapshot, @Nullable @org.jetbrains.annotations.Nullable String previousChildName) {
+                                        if (snapshot.exists()) {
+                                            reference.child(userName).child("vendorName").setValue(vendorNameText);
+                                            reference.child(userName).child("email").setValue(vendorEmailText);
+                                            reference.child(userName).child("vendorSourceType").setValue(vendorResourceTypeText);
+                                            reference.child(userName).child("vendorStartYear").setValue(vendorStartYearText);
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onChildChanged(@NonNull @NotNull DataSnapshot snapshot, @Nullable @org.jetbrains.annotations.Nullable String previousChildName) {
+
+                                    }
+
+                                    @Override
+                                    public void onChildRemoved(@NonNull @NotNull DataSnapshot snapshot) {
+
+                                    }
+
+                                    @Override
+                                    public void onChildMoved(@NonNull @NotNull DataSnapshot snapshot, @Nullable @org.jetbrains.annotations.Nullable String previousChildName) {
+
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+                                    }
+                                });
+                            } else {
+                                validateVendorStartYear();
+                            }
+                        } else {
+                            validateVendorEmail();
+                        }
+                    } else {
+                        validateVendorResourceType();
+                    }
+                } else {
+                    validateVendorName();
+                }
+
+            }
+        });
 
     }
 
@@ -74,144 +195,108 @@ public class AuthorizedUserProfile extends AppCompatActivity {
         });
     }
 
-    private boolean validateVendorName()
-    {
-        if(vendorNameText.equals(""))
-        {
+    private boolean validateVendorName() {
+        if (vendorNameText.equals("")) {
             vendorName.setErrorEnabled(true);
             vendorName.setError("Enter vendor Name");
             return false;
-        }
-        else
-        {
+        } else {
             vendorName.setErrorEnabled(false);
             vendorName.setError(null);
             return true;
         }
     }
 
-    private boolean validateVendorEmail()
-    {
-        if(vendorEmailText.equals(""))
-        {
+    private boolean validateVendorEmail() {
+        if (vendorEmailText.equals("")) {
             vendorEmail.setErrorEnabled(true);
             vendorEmail.setError("Enter vendor Email");
             return false;
-        }
-        else
-        {
+        } else {
             vendorEmail.setErrorEnabled(false);
             vendorEmail.setError(null);
             return true;
         }
     }
 
-    private boolean validateVendorResourceType()
-    {
-        if(vendorResourceTypeText.equals(""))
-        {
+    private boolean validateVendorResourceType() {
+        if (vendorResourceTypeText.equals("")) {
             vendorResourceType.setErrorEnabled(true);
             vendorResourceType.setError("Enter vendor ResourceType");
             return false;
-        }
-        else
-        {
+        } else {
             vendorResourceType.setErrorEnabled(false);
             vendorResourceType.setError(null);
             return true;
         }
     }
 
-    private boolean validateVendorStartYear()
-    {
-        if(vendorStartYearText.equals(""))
-        {
+    private boolean validateVendorStartYear() {
+        if (vendorStartYearText.equals("")) {
             vendorStartYear.setErrorEnabled(true);
             vendorStartYear.setError("Enter vendor StartYear");
             return false;
-        }
-        else
-        {
+        } else {
             vendorStartYear.setErrorEnabled(false);
             vendorStartYear.setError(null);
             return true;
         }
     }
 
-    private boolean validateCompanyName()
-    {
-        if(companyNameText.equals(""))
-        {
+    private boolean validateCompanyName() {
+        if (companyNameText.equals("")) {
             companyName.setErrorEnabled(true);
             companyName.setError("Enter Company Name");
             return false;
-        }
-        else
-        {
+        } else {
             companyName.setErrorEnabled(false);
             companyName.setError(null);
             return true;
         }
     }
 
-    private boolean validateCompanyResourceType()
-    {
-        if(companyResourceTypeText.equals(""))
-        {
+    private boolean validateCompanyResourceType() {
+        if (companyResourceTypeText.equals("")) {
             companyResourceType.setErrorEnabled(true);
             companyResourceType.setError("Enter Company Resource Tpye");
             return false;
-        }
-        else
-        {
+        } else {
             companyResourceType.setErrorEnabled(false);
             companyResourceType.setError(null);
             return true;
         }
     }
 
-    private boolean validateCompanyLicenceNo()
-    {
-        if(companyLicenceNoText.equals(""))
-        {
+    private boolean validateCompanyLicenceNo() {
+        if (companyLicenceNoText.equals("")) {
             companyLicenceNo.setErrorEnabled(true);
             companyLicenceNo.setError("Enter Company Licence No");
             return false;
-        }
-        else
-        {
+        } else {
             companyLicenceNo.setErrorEnabled(false);
             companyLicenceNo.setError(null);
             return true;
         }
     }
 
-    private boolean validateCompanyEmail()
-    {
-        if(companyEmailText.equals(""))
-        {
+    private boolean validateCompanyEmail() {
+        if (companyEmailText.equals("")) {
             companyEmail.setErrorEnabled(true);
             companyEmail.setError("Enter Company Email");
             return false;
-        }
-        else
-        {
+        } else {
             companyEmail.setErrorEnabled(false);
             companyEmail.setError(null);
             return true;
         }
     }
 
-    private boolean validateCompanyEstablishYear()
-    {
-        if(companyEstablishmentYearText.equals(""))
-        {
+    private boolean validateCompanyEstablishYear() {
+        if (companyEstablishmentYearText.equals("")) {
             companyEstablishmentYear.setErrorEnabled(true);
             companyEstablishmentYear.setError("Enter Company Established Year");
             return false;
-        }
-        else
-        {
+        } else {
             companyEstablishmentYear.setErrorEnabled(false);
             companyEstablishmentYear.setError(null);
             return true;
