@@ -74,6 +74,150 @@ public class AuthorizedUserProfile extends AppCompatActivity {
         });
     }
 
+    private boolean validateVendorName()
+    {
+        if(vendorNameText.equals(""))
+        {
+            vendorName.setErrorEnabled(true);
+            vendorName.setError("Enter vendor Name");
+            return false;
+        }
+        else
+        {
+            vendorName.setErrorEnabled(false);
+            vendorName.setError(null);
+            return true;
+        }
+    }
+
+    private boolean validateVendorEmail()
+    {
+        if(vendorEmailText.equals(""))
+        {
+            vendorEmail.setErrorEnabled(true);
+            vendorEmail.setError("Enter vendor Email");
+            return false;
+        }
+        else
+        {
+            vendorEmail.setErrorEnabled(false);
+            vendorEmail.setError(null);
+            return true;
+        }
+    }
+
+    private boolean validateVendorResourceType()
+    {
+        if(vendorResourceTypeText.equals(""))
+        {
+            vendorResourceType.setErrorEnabled(true);
+            vendorResourceType.setError("Enter vendor ResourceType");
+            return false;
+        }
+        else
+        {
+            vendorResourceType.setErrorEnabled(false);
+            vendorResourceType.setError(null);
+            return true;
+        }
+    }
+
+    private boolean validateVendorStartYear()
+    {
+        if(vendorStartYearText.equals(""))
+        {
+            vendorStartYear.setErrorEnabled(true);
+            vendorStartYear.setError("Enter vendor StartYear");
+            return false;
+        }
+        else
+        {
+            vendorStartYear.setErrorEnabled(false);
+            vendorStartYear.setError(null);
+            return true;
+        }
+    }
+
+    private boolean validateCompanyName()
+    {
+        if(companyNameText.equals(""))
+        {
+            companyName.setErrorEnabled(true);
+            companyName.setError("Enter Company Name");
+            return false;
+        }
+        else
+        {
+            companyName.setErrorEnabled(false);
+            companyName.setError(null);
+            return true;
+        }
+    }
+
+    private boolean validateCompanyResourceType()
+    {
+        if(companyResourceTypeText.equals(""))
+        {
+            companyResourceType.setErrorEnabled(true);
+            companyResourceType.setError("Enter Company Resource Tpye");
+            return false;
+        }
+        else
+        {
+            companyResourceType.setErrorEnabled(false);
+            companyResourceType.setError(null);
+            return true;
+        }
+    }
+
+    private boolean validateCompanyLicenceNo()
+    {
+        if(companyLicenceNoText.equals(""))
+        {
+            companyLicenceNo.setErrorEnabled(true);
+            companyLicenceNo.setError("Enter Company Licence No");
+            return false;
+        }
+        else
+        {
+            companyLicenceNo.setErrorEnabled(false);
+            companyLicenceNo.setError(null);
+            return true;
+        }
+    }
+
+    private boolean validateCompanyEmail()
+    {
+        if(companyEmailText.equals(""))
+        {
+            companyEmail.setErrorEnabled(true);
+            companyEmail.setError("Enter Company Email");
+            return false;
+        }
+        else
+        {
+            companyEmail.setErrorEnabled(false);
+            companyEmail.setError(null);
+            return true;
+        }
+    }
+
+    private boolean validateCompanyEstablishYear()
+    {
+        if(companyEstablishmentYearText.equals(""))
+        {
+            companyEstablishmentYear.setErrorEnabled(true);
+            companyEstablishmentYear.setError("Enter Company Established Year");
+            return false;
+        }
+        else
+        {
+            companyEstablishmentYear.setErrorEnabled(false);
+            companyEstablishmentYear.setError(null);
+            return true;
+        }
+    }
+
     private void loadCompanyDetails(String companyEmailText, String companyResourceTypeText, String companyNameText, String companyEstablishmentYearText, String companyLicenceNoText) {
         companyEmail.getEditText().setText(companyEmailText);
         companyResourceType.getEditText().setText(companyResourceTypeText);
