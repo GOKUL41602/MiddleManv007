@@ -24,7 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 public class MainActivity extends AppCompatActivity {
 
     TextInputLayout userName, password;
-    Button loginButton;
+    Button loginButton,forgetPasswordButton;
     String userNameText, passwordText;
     RelativeLayout relativeLayout;
     TextView newUserButton;
@@ -50,6 +50,17 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 initializeStrings();
                 validateUserName();
+            }
+        });
+
+        forgetPasswordButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                initializeStrings();
+                Intent intent=new Intent(MainActivity.this,ForgetPassword.class);
+                intent.putExtra("userName",userNameText);
+                intent.putExtra("userMode","Normal");
+                startActivity(intent);
             }
         });
     }
@@ -118,5 +129,6 @@ public class MainActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.loginPage_loginButton);
         relativeLayout=findViewById(R.id.mainActivity_relLayout);
         newUserButton = findViewById(R.id.loginPage_newUserButton);
+        forgetPasswordButton=findViewById(R.id.loginPage_forgetPasswordButton);
     }
 }

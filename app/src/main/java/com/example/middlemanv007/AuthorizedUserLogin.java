@@ -57,12 +57,22 @@ public class AuthorizedUserLogin extends AppCompatActivity {
 
             }
         });
+
+        forgetPasswordButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                initializeStrings();
+                Intent intent=new Intent(AuthorizedUserLogin.this,ForgetPassword.class);
+                intent.putExtra("userName",userName);
+                intent.putExtra("userMode","Authorized");
+                startActivity(intent);
+            }
+        });
         newUserButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AuthorizedUserLogin.this, AuthorizedUserRegistration.class);
                 intent.putExtra("userName", userName);
-
                 startActivity(intent);
             }
         });
