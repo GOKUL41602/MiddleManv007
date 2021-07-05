@@ -24,7 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 public class MainActivity extends AppCompatActivity {
 
     TextInputLayout userName, password;
-    Button loginButton,forgetPasswordButton;
+    Button loginButton, forgetPasswordButton;
     String userNameText, passwordText;
     RelativeLayout relativeLayout;
     TextView newUserButton;
@@ -40,9 +40,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-               Intent intent=new Intent(MainActivity.this,UserRegistration.class);
-               startActivity(intent);
-               MainActivity.this.finish();
+                Intent intent = new Intent(MainActivity.this, UserRegistration.class);
+                startActivity(intent);
+                MainActivity.this.finish();
             }
         });
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -57,54 +57,45 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 initializeStrings();
-                Intent intent=new Intent(MainActivity.this,ForgetPassword.class);
-                intent.putExtra("userName",userNameText);
-                intent.putExtra("userMode","Normal");
+                Intent intent = new Intent(MainActivity.this, ForgetPassword.class);
+                intent.putExtra("userName", userNameText);
+                intent.putExtra("userMode", "Normal");
                 startActivity(intent);
             }
         });
     }
 
-    private void validateUserName()
-    {
-        reference= FirebaseDatabase.getInstance().getReference("UsersDto");
+    private void validateUserName() {
+        reference = FirebaseDatabase.getInstance().getReference("UsersDto");
 
-        Query query=reference.orderByChild("userName").startAt(userNameText).endAt(userNameText+"\uf8ff");
+        Query query = reference.orderByChild("userName").startAt(userNameText).endAt(userNameText + "\uf8ff");
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists())
-                {
-                    String userNameFromDB=snapshot.child(userNameText).child("userName").getValue(String.class);
-                    if(userNameText.equals(userNameFromDB))
-                    {
+                if (snapshot.exists()) {
+                    String userNameFromDB = snapshot.child(userNameText).child("userName").getValue(String.class);
+                    if (userNameText.equals(userNameFromDB)) {
                         userName.setError(null);
                         userName.setErrorEnabled(true);
-                        String passwordFromDB=snapshot.child(userNameText).child("password").getValue(String.class);
-                        if(passwordText.equals(passwordFromDB))
-                        {
+                        String passwordFromDB = snapshot.child(userNameText).child("password").getValue(String.class);
+                        if (passwordText.equals(passwordFromDB)) {
                             password.setErrorEnabled(false);
                             password.setError(null);
-                            Intent intent=new Intent(MainActivity.this,SalesMela.class);
-                            intent.putExtra("userName",userNameText);
+                            Intent intent = new Intent(MainActivity.this, SalesMela.class);
+                            intent.putExtra("userName", userNameText);
                             startActivity(intent);
                             MainActivity.this.finish();
-                        }
-                        else
-                        {
+                        } else {
                             password.setErrorEnabled(true);
                             password.setError("Incorrect Password");
                             password.requestFocus();
                         }
-                    }
-                    else
-                    {
+                    } else {
                         userName.setError("User name doesn't exists");
                         userName.setErrorEnabled(true);
                         userName.requestFocus();
                     }
-                }
-                else {
+                } else {
                     userName.setError("User name doesn't exists");
                     userName.setErrorEnabled(true);
                     userName.requestFocus();
@@ -118,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
     private void initializeStrings() {
         userNameText = userName.getEditText().getText().toString();
         passwordText = password.getEditText().getText().toString();
@@ -127,8 +119,8 @@ public class MainActivity extends AppCompatActivity {
         userName = findViewById(R.id.loginPage_userName);
         password = findViewById(R.id.loginPage_password);
         loginButton = findViewById(R.id.loginPage_loginButton);
-        relativeLayout=findViewById(R.id.mainActivity_relLayout);
+        relativeLayout = findViewById(R.id.mainActivity_relLayout);
         newUserButton = findViewById(R.id.loginPage_newUserButton);
-        forgetPasswordButton=findViewById(R.id.loginPage_forgetPasswordButton);
+        forgetPasswordButton = findViewById(R.id.loginPage_forgetPasswordButton);
     }
 }

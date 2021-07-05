@@ -23,7 +23,7 @@ import org.jetbrains.annotations.NotNull;
 public class ForgetPassword extends AppCompatActivity {
 
     TextInputLayout createPassword, confirmPassword;
-    String userName,userMode, userType, createPasswordText, confirmPasswordText;
+    String userName, userMode, userType, createPasswordText, confirmPasswordText;
     Button changePasswordButton;
     DatabaseReference reference;
 
@@ -34,11 +34,11 @@ public class ForgetPassword extends AppCompatActivity {
         try {
             userName = getIntent().getStringExtra("userName");
             userType = getIntent().getStringExtra("userType");
-            userMode=getIntent().getStringExtra("userMode");
+            userMode = getIntent().getStringExtra("userMode");
         } catch (Exception e) {
             userType = null;
             userName = null;
-            userMode=null;
+            userMode = null;
         }
         initializeViews();
 
@@ -49,18 +49,16 @@ public class ForgetPassword extends AppCompatActivity {
                 if (validateCreatePassword()) {
                     if (validateConfirmPassword()) {
                         if (verifyPassword()) {
-                            if(userMode.equals("Normal"))
-                            {
-                                reference= FirebaseDatabase.getInstance().getReference("UsersDto");
-                                Query query=reference.orderByChild("userName").startAt(userName).endAt(userName+"\uf8ff");
+                            if (userMode.equals("Normal")) {
+                                reference = FirebaseDatabase.getInstance().getReference("UsersDto");
+                                Query query = reference.orderByChild("userName").startAt(userName).endAt(userName + "\uf8ff");
                                 query.addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                                        if(snapshot.exists())
-                                        {
+                                        if (snapshot.exists()) {
                                             reference.child(userName).child("password").setValue(confirmPasswordText);
                                             Toast.makeText(ForgetPassword.this, "Password changed successfully", Toast.LENGTH_SHORT).show();
-                                            Intent intent=new Intent(ForgetPassword.this,MainActivity.class);
+                                            Intent intent = new Intent(ForgetPassword.this, MainActivity.class);
                                             startActivity(intent);
                                         }
                                     }
@@ -70,21 +68,18 @@ public class ForgetPassword extends AppCompatActivity {
 
                                     }
                                 });
-                            }
-                            else if(userMode.equals("Authorized"))
-                            {
-                                reference= FirebaseDatabase.getInstance().getReference("AuthorizedUsersDto");
-                                Query query=reference.orderByChild("userName").startAt(userName).endAt(userName+"\uf8ff");
+                            } else if (userMode.equals("Authorized")) {
+                                reference = FirebaseDatabase.getInstance().getReference("AuthorizedUsersDto");
+                                Query query = reference.orderByChild("userName").startAt(userName).endAt(userName + "\uf8ff");
                                 query.addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                                        if(snapshot.exists())
-                                        {
+                                        if (snapshot.exists()) {
                                             reference.child(userName).child("password").setValue(confirmPasswordText);
                                             Toast.makeText(ForgetPassword.this, "Password changed successfully", Toast.LENGTH_SHORT).show();
-                                            Intent intent=new Intent(ForgetPassword.this,AuthorizedUserLogin.class);
-                                            intent.putExtra("userName",userName);
-                                            intent.putExtra("userType",userType);
+                                            Intent intent = new Intent(ForgetPassword.this, AuthorizedUserLogin.class);
+                                            intent.putExtra("userName", userName);
+                                            intent.putExtra("userType", userType);
                                             startActivity(intent);
                                         }
                                     }
