@@ -21,6 +21,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import org.jetbrains.annotations.NotNull;
+
 public class MainActivity extends AppCompatActivity {
 
     TextInputLayout userName, password;
@@ -49,7 +51,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 initializeStrings();
-                validateUserName();
+                if (validateUser()) {
+                    if (validatePassword()) {
+                        validateUserName();
+                    } else {
+                        validatePassword();
+                    }
+                } else {
+                    validateUser();
+                }
+
             }
         });
 
@@ -57,10 +68,43 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 initializeStrings();
-                Intent intent = new Intent(MainActivity.this, ForgetPassword.class);
-                intent.putExtra("userName", userNameText);
-                intent.putExtra("userMode", "Normal");
-                startActivity(intent);
+
+                if (validateUser()) {
+                    validateUserNameForForgetPassword();
+                } else {
+                    validateUser();
+                }
+
+            }
+        });
+    }
+
+    private void validateUserNameForForgetPassword() {
+        reference = FirebaseDatabase.getInstance().getReference("UsersDto");
+        Query query = reference.orderByChild("userName").startAt(userNameText).endAt(userNameText + "\uf8ff");
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    String userNameFromDB = snapshot.child(userNameText).child("userName").getValue(String.class);
+                    if (userNameFromDB.equals(userNameText)) {
+                        userName.setError(null);
+                        userName.setErrorEnabled(true);
+                        Intent intent = new Intent(MainActivity.this, ForgetPassword.class);
+                        intent.putExtra("userName", userNameText);
+                        intent.putExtra("userMode", "Normal");
+                        startActivity(intent);
+                    } else {
+                        userName.setError("User name doesn't exists");
+                        userName.setErrorEnabled(true);
+                        userName.requestFocus();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
             }
         });
     }
@@ -108,6 +152,30 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private boolean validateUser() {
+        if (userNameText.equals("")) {
+            userName.setErrorEnabled(true);
+            userName.setError("Enter UserName");
+            return false;
+        } else {
+            userName.setErrorEnabled(false);
+            userName.setError(null);
+            return true;
+        }
+    }
+
+    private boolean validatePassword() {
+        if (passwordText.equals("")) {
+            password.setError("Enter Password");
+            password.setErrorEnabled(true);
+            return false;
+        } else {
+            password.setError(null);
+            password.setErrorEnabled(false);
+            return true;
+        }
     }
 
     private void initializeStrings() {

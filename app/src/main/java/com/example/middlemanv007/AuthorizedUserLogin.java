@@ -20,6 +20,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import org.jetbrains.annotations.NotNull;
+
 public class AuthorizedUserLogin extends AppCompatActivity {
 
     TextInputLayout email, password;
@@ -62,10 +64,12 @@ public class AuthorizedUserLogin extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 initializeStrings();
-                Intent intent = new Intent(AuthorizedUserLogin.this, ForgetPassword.class);
-                intent.putExtra("userName", userName);
-                intent.putExtra("userMode", "Authorized");
-                startActivity(intent);
+                if (validateEmail()) {
+                    verifyEmailForForgetPassword();
+                } else {
+                    validateEmail();
+                }
+
             }
         });
         newUserButton.setOnClickListener(new View.OnClickListener() {
@@ -76,6 +80,38 @@ public class AuthorizedUserLogin extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void verifyEmailForForgetPassword() {
+        reference = FirebaseDatabase.getInstance().getReference("AuthorizedUsersDto");
+        Query query = reference.orderByChild("userName").startAt(userName).endAt(userName + "\uf8ff");
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    String emailFromDB = snapshot.child(userName).child("email").getValue(String.class);
+                    if (emailText.equals(emailFromDB)) {
+                        email.setError(null);
+                        email.setErrorEnabled(false);
+                        Intent intent = new Intent(AuthorizedUserLogin.this, ForgetPassword.class);
+                        intent.putExtra("userName", userName);
+                        intent.putExtra("userMode", "Authorized");
+                        startActivity(intent);
+                    } else {
+                        email.setError("Email doesn't exists");
+                        email.setErrorEnabled(true);
+                    }
+                } else {
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
+
     }
 
     private void verifyUser() {
