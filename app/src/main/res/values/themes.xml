@@ -22,4 +22,6 @@
     <style name="Theme.MiddleManv007.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.MiddleManv007.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Theme.NoActionBar" parent="Theme.MaterialComponents.DayNight.DarkActionBar"/>
 </resources>

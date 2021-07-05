@@ -395,7 +395,13 @@ public class AuthorizedUserProfile extends AppCompatActivity implements Navigati
                 startActivity(intent1);
                 AuthorizedUserProfile.this.finish();
                 break;
-
+            case R.id.nav_createRequest:
+                Intent intent2 = new Intent(AuthorizedUserProfile.this, AuthorizedCreateRequest.class);
+                intent2.putExtra("userName", userName);
+                intent2.putExtra("userType", userType);
+                startActivity(intent2);
+                AuthorizedUserProfile.this.finish();
+                break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;

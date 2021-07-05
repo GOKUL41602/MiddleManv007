@@ -93,6 +93,13 @@ public class AuthorizedUserRequestsView extends AppCompatActivity implements Nav
                 startActivity(intent1);
                 AuthorizedUserRequestsView.this.finish();
                 break;
+            case R.id.nav_createRequest:
+                Intent intent2 = new Intent(AuthorizedUserRequestsView.this, AuthorizedCreateRequest.class);
+                intent2.putExtra("userName", userName);
+                intent2.putExtra("userType", userType);
+                startActivity(intent2);
+                AuthorizedUserRequestsView.this.finish();
+                break;
 
 
         }

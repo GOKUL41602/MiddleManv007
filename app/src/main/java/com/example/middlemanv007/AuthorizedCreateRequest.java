@@ -1,9 +1,16 @@
 package com.example.middlemanv007;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -11,12 +18,15 @@ import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class AuthorizedCreateRequest extends AppCompatActivity {
+public class AuthorizedCreateRequest extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+
+    private DrawerLayout drawerLayout;
 
     Button companyRequestBtn, vendorRequestBtn;
     RelativeLayout companyRelLayout, vendorRelLayout;
@@ -34,6 +44,19 @@ public class AuthorizedCreateRequest extends AppCompatActivity {
         setContentView(R.layout.activity_authorized_create_request);
         initializeViews();
 
+        drawerLayout = findViewById(R.id.authorizedUserCreateRequest_design_navigation_view);
+
+        Toolbar toolbar = findViewById(R.id.authorizedUserCreateRequest_toolbar);
+
+        NavigationView navigationView = findViewById(R.id.authorizedUserCreateRequest_nav_view);
+
+        navigationView.setNavigationItemSelectedListener(this);
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_draw_close);
+
+        drawerLayout.addDrawerListener(toggle);
+
+        toggle.syncState();
         try {
             userName = getIntent().getStringExtra("userName");
         } catch (Exception e) {
@@ -117,6 +140,36 @@ public class AuthorizedCreateRequest extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.nav_updateProfile:
+                Intent intent = new Intent(AuthorizedCreateRequest.this, AuthorizedUserProfile.class);
+                intent.putExtra("userName", userName);
+                intent.putExtra("userType", userType);
+                startActivity(intent);
+                AuthorizedCreateRequest.this.finish();
+                break;
+            case R.id.nav_showRequests:
+                Intent intent1 = new Intent(AuthorizedCreateRequest.this, AuthorizedUserRequestsView.class);
+                intent1.putExtra("userName", userName);
+                intent1.putExtra("userType", userType);
+                startActivity(intent1);
+                AuthorizedCreateRequest.this.finish();
+                break;
+            case R.id.nav_createRequest:
+                Intent intent2 = new Intent(AuthorizedCreateRequest.this, AuthorizedCreateRequest.class);
+                intent2.putExtra("userName", userName);
+                intent2.putExtra("userType", userType);
+                startActivity(intent2);
+                AuthorizedCreateRequest.this.finish();
+                break;
+
+        }
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
     }
 
     private boolean validateVendorMaterialType() {

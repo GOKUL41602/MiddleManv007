@@ -1,225 +1,274 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/authorizedCreateRequest_relLayout"
+    android:id="@+id/authorizedUserCreateRequest_design_navigation_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AuthorizedCreateRequest">
+    android:fitsSystemWindows="true"
+    tools:context=".AuthorizedCreateRequest"
+    tools:openDrawer="start">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/authorizedCreateRequest_title"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"
-        android:text="Create a Request"
-        android:textSize="30sp"/>
-
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_below="@+id/authorizedCreateRequest_title"
-        android:layout_centerHorizontal="true"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/authorizedUserCreateRequest_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="MiddleMan">
 
-            <RadioGroup
-                android:id="@+id/authorizedRequestRadioGrp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp"
-                android:orientation="horizontal">
+        </androidx.appcompat.widget.Toolbar>
 
-                <RadioButton
-                    android:id="@+id/authorizedRequestCompany"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="true"
-                    android:text="Company" />
-
-                <RadioButton
-                    android:id="@+id/authorizedRequestVendor"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:checked="true"
-                    android:text="Vendor" />
-
-
-            </RadioGroup>
-
+        <FrameLayout
+            android:id="@+id/authorizedUserCreateRequest_fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <RelativeLayout
-                android:id="@+id/authorizedCompanyRelLayout"
+                android:id="@+id/authorizedCreateRequest_relLayout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@+id/authorizedRequestRadioGrp"
-                android:visibility="gone">
+                android:layout_height="match_parent">
 
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/authorizedCreateRequest_materialType"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="290dp"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="40dp">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="290dp"
-                        android:layout_height="wrap_content"
-                        android:hint="Material Type" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/authorizedCreateRequest_stocksNeeded"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="290dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/authorizedCreateRequest_materialType"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="40dp">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="290dp"
-                        android:layout_height="wrap_content"
-                        android:hint="Stocks Needed" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/authorizedCreateRequest_requiredDate"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="290dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/authorizedCreateRequest_stocksNeeded"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="40dp">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="290dp"
-                        android:layout_height="wrap_content"
-                        android:hint="Required withIn" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/authorizedCreateRequest_contactNo"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="290dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/authorizedCreateRequest_requiredDate"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="40dp">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="290dp"
-                        android:layout_height="wrap_content"
-                        android:hint="Contact No" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <Button
-                    android:id="@+id/authorizedCreateRequest_companyCreateRequest"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/authorizedCreateRequest_contactNo"
+                    android:id="@+id/authorizedCreateRequest_title"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginBottom="30dp"
-                    android:text="Create Request" />
+                    android:layout_marginTop="60dp"
+                    android:text="Create a Request"
+                    android:textSize="30sp"/>
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_below="@+id/authorizedCreateRequest_title"
+                    android:layout_centerHorizontal="true"
+                    android:layout_height="match_parent">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <RadioGroup
+                            android:id="@+id/authorizedRequestRadioGrp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="30dp"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/authorizedRequestCompany"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:checked="true"
+                                android:text="Company" />
+
+                            <RadioButton
+                                android:id="@+id/authorizedRequestVendor"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:checked="true"
+                                android:text="Vendor" />
 
 
+                        </RadioGroup>
+
+
+                        <RelativeLayout
+                            android:id="@+id/authorizedCompanyRelLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_below="@+id/authorizedRequestRadioGrp"
+                            android:visibility="gone">
+
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/authorizedCreateRequest_materialType"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="290dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="40dp">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:layout_width="290dp"
+                                    android:layout_height="wrap_content"
+                                    android:hint="Material Type" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/authorizedCreateRequest_stocksNeeded"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="290dp"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/authorizedCreateRequest_materialType"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="40dp">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:layout_width="290dp"
+                                    android:layout_height="wrap_content"
+                                    android:hint="Stocks Needed" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/authorizedCreateRequest_requiredDate"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="290dp"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/authorizedCreateRequest_stocksNeeded"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="40dp">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:layout_width="290dp"
+                                    android:layout_height="wrap_content"
+                                    android:hint="Required withIn" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/authorizedCreateRequest_contactNo"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="290dp"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/authorizedCreateRequest_requiredDate"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="40dp">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:layout_width="290dp"
+                                    android:layout_height="wrap_content"
+                                    android:hint="Contact No" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <Button
+                                android:id="@+id/authorizedCreateRequest_companyCreateRequest"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/authorizedCreateRequest_contactNo"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="30dp"
+                                android:layout_marginBottom="30dp"
+                                android:text="Create Request" />
+
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/authorizedVendorRelLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_below="@+id/authorizedRequestRadioGrp"
+                            android:visibility="visible">
+
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/authorizedCreateRequest_VendorMaterialType"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="290dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="40dp">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:layout_width="290dp"
+                                    android:layout_height="wrap_content"
+                                    android:hint="Material Type" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/authorizedCreateRequest_vendorStocksAvailable"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="290dp"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/authorizedCreateRequest_VendorMaterialType"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="40dp">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:layout_width="290dp"
+                                    android:layout_height="wrap_content"
+                                    android:hint="Stocks Available" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/authorizedCreateRequest_vendorExpireDate"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="290dp"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/authorizedCreateRequest_vendorStocksAvailable"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="40dp">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:layout_width="290dp"
+                                    android:layout_height="wrap_content"
+                                    android:hint="Expire withIn" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/authorizedCreateRequest_vendorContactNo"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="290dp"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/authorizedCreateRequest_vendorExpireDate"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="40dp">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:layout_width="290dp"
+                                    android:layout_height="wrap_content"
+                                    android:hint="Contact No" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <Button
+                                android:id="@+id/authorizedCreateRequest_vendorCreateRequestBtn"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/authorizedCreateRequest_vendorContactNo"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="30dp"
+                                android:layout_marginBottom="30dp"
+                                android:text="Create Request" />
+
+
+                        </RelativeLayout>
+                    </RelativeLayout>
+                </ScrollView>
             </RelativeLayout>
 
-            <RelativeLayout
-                android:id="@+id/authorizedVendorRelLayout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@+id/authorizedRequestRadioGrp"
-                android:visibility="visible">
+        </FrameLayout>
+    </LinearLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/authorizedUserCreateRequest_nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/sales_mela">
+
+    </com.google.android.material.navigation.NavigationView>
 
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/authorizedCreateRequest_VendorMaterialType"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="290dp"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="40dp">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="290dp"
-                        android:layout_height="wrap_content"
-                        android:hint="Material Type" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/authorizedCreateRequest_vendorStocksAvailable"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="290dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/authorizedCreateRequest_VendorMaterialType"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="40dp">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="290dp"
-                        android:layout_height="wrap_content"
-                        android:hint="Stocks Available" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/authorizedCreateRequest_vendorExpireDate"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="290dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/authorizedCreateRequest_vendorStocksAvailable"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="40dp">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="290dp"
-                        android:layout_height="wrap_content"
-                        android:hint="Expire withIn" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/authorizedCreateRequest_vendorContactNo"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="290dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/authorizedCreateRequest_vendorExpireDate"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="40dp">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="290dp"
-                        android:layout_height="wrap_content"
-                        android:hint="Contact No" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <Button
-                    android:id="@+id/authorizedCreateRequest_vendorCreateRequestBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/authorizedCreateRequest_vendorContactNo"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginBottom="30dp"
-                    android:text="Create Request" />
+</androidx.drawerlayout.widget.DrawerLayout>
 
 
-            </RelativeLayout>
-        </RelativeLayout>
-    </ScrollView>
-</RelativeLayout>
+
+
+
+
+
