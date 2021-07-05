@@ -2,13 +2,20 @@ package com.example.middlemanv007;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -20,7 +27,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
-public class AuthorizedUserProfile extends AppCompatActivity {
+public class AuthorizedUserProfile extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    private DrawerLayout drawerLayout;
 
     private RelativeLayout companyRelLayout, vendorRelLayout;
     private TextInputLayout companyName, companyResourceType, companyLicenceNo, companyEmail, companyEstablishmentYear, vendorName, vendorResourceType, vendorEmail, vendorStartYear;
@@ -39,6 +48,23 @@ public class AuthorizedUserProfile extends AppCompatActivity {
         }
         initializeViews();
         getUserTypeAndLoadDetails();
+
+
+        drawerLayout = findViewById(R.id.authorizedUserProfile_design_navigation_view);
+
+        Toolbar toolbar = findViewById(R.id.authorizedUserProfile_toolbar);
+
+        NavigationView navigationView = findViewById(R.id.authorizedUserProfile_nav_view);
+
+        navigationView.setNavigationItemSelectedListener(this);
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_draw_close);
+
+        drawerLayout.addDrawerListener(toggle);
+
+        toggle.syncState();
+
+
         companyUpdateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -350,5 +376,28 @@ public class AuthorizedUserProfile extends AppCompatActivity {
 
         companyUpdateButton = findViewById(R.id.authorizedUserProfile_companyUpdateButton);
         vendorUpdateButton = findViewById(R.id.authorizedUserProfile_vendorUpdateButton);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.nav_updateProfile:
+                Intent intent = new Intent(AuthorizedUserProfile.this, AuthorizedUserProfile.class);
+                intent.putExtra("userName", userName);
+                intent.putExtra("userType", userType);
+                startActivity(intent);
+                AuthorizedUserProfile.this.finish();
+                break;
+            case R.id.nav_showRequests:
+                Intent intent1 = new Intent(AuthorizedUserProfile.this, AuthorizedUserRequestsView.class);
+                intent1.putExtra("userName", userName);
+                intent1.putExtra("userType", userType);
+                startActivity(intent1);
+                AuthorizedUserProfile.this.finish();
+                break;
+
+        }
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
     }
 }

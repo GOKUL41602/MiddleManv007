@@ -1,203 +1,252 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/authorizedUserProfile_design_navigation_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AuthorizedUserProfile">
+    android:fitsSystemWindows="true"
+    tools:context=".AuthorizedUserProfile"
+    tools:openDrawer="start">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <RelativeLayout
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/authorizedUserProfile_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="MiddleMan">
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <FrameLayout
+            android:id="@+id/authorizedUserProfile_fragment_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/authorizedUser_profileTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="50dp"
-                android:text="Update Profile"
-                android:textSize="30sp"
-                android:textStyle="italic|bold" />
 
             <RelativeLayout
-                android:id="@+id/authorizedUserProfile_companyRelLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/authorizedUser_profileTitle"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp"
-                android:visibility="visible">
+                android:layout_height="match_parent">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/authorizedUserProfile_companyName"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="290dp"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true">
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="290dp"
-                        android:layout_height="wrap_content"
-                        android:hint="Company Name" />
-                </com.google.android.material.textfield.TextInputLayout>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/authorizedUserProfile_companyMaterialType"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="290dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/authorizedUserProfile_companyName"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="30dp">
+                        <TextView
+                            android:id="@+id/authorizedUser_profileTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="50dp"
+                            android:text="Update Profile"
+                            android:textSize="30sp"
+                            android:textStyle="italic|bold" />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="290dp"
-                        android:layout_height="wrap_content"
-                        android:hint="Resource Type" />
-                </com.google.android.material.textfield.TextInputLayout>
+                        <RelativeLayout
+                            android:id="@+id/authorizedUserProfile_companyRelLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/authorizedUser_profileTitle"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="30dp"
+                            android:visibility="visible">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/authorizedUserProfile_companyLicenceNo"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="290dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/authorizedUserProfile_companyMaterialType"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="30dp">
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/authorizedUserProfile_companyName"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="290dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="290dp"
-                        android:layout_height="wrap_content"
-                        android:hint="Company Licence No" />
-                </com.google.android.material.textfield.TextInputLayout>
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:layout_width="290dp"
+                                    android:layout_height="wrap_content"
+                                    android:hint="Company Name" />
+                            </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/authorizedUserProfile_companyEmail"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="290dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/authorizedUserProfile_companyLicenceNo"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="30dp">
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/authorizedUserProfile_companyMaterialType"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="290dp"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/authorizedUserProfile_companyName"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="30dp">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="290dp"
-                        android:layout_height="wrap_content"
-                        android:hint="Company Email" />
-                </com.google.android.material.textfield.TextInputLayout>
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:layout_width="290dp"
+                                    android:layout_height="wrap_content"
+                                    android:hint="Resource Type" />
+                            </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/authorizedUserProfile_companyEstablishYear"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="290dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/authorizedUserProfile_companyEmail"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="30dp">
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/authorizedUserProfile_companyLicenceNo"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="290dp"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/authorizedUserProfile_companyMaterialType"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="30dp">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="290dp"
-                        android:layout_height="wrap_content"
-                        android:hint="Company Established Year" />
-                </com.google.android.material.textfield.TextInputLayout>
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:layout_width="290dp"
+                                    android:layout_height="wrap_content"
+                                    android:hint="Company Licence No" />
+                            </com.google.android.material.textfield.TextInputLayout>
 
-                <Button
-                    android:id="@+id/authorizedUserProfile_companyUpdateButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/authorizedUserProfile_companyEstablishYear"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="30dp"
-                    android:text="Update" />
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/authorizedUserProfile_companyEmail"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="290dp"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/authorizedUserProfile_companyLicenceNo"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="30dp">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:layout_width="290dp"
+                                    android:layout_height="wrap_content"
+                                    android:hint="Company Email" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/authorizedUserProfile_companyEstablishYear"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="290dp"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/authorizedUserProfile_companyEmail"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="30dp">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:layout_width="290dp"
+                                    android:layout_height="wrap_content"
+                                    android:hint="Company Established Year" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <Button
+                                android:id="@+id/authorizedUserProfile_companyUpdateButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/authorizedUserProfile_companyEstablishYear"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="30dp"
+                                android:text="Update" />
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/authorizedUserProfile_vendorRelLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/authorizedUser_profileTitle"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="30dp"
+                            android:visibility="gone">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/authorizedUserProfile_vendorName"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="290dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:layout_width="290dp"
+                                    android:layout_height="wrap_content"
+                                    android:hint="Vendor Name" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/authorizedUserProfile_vendorSourceType"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="290dp"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/authorizedUserProfile_vendorName"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="30dp">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:layout_width="290dp"
+                                    android:layout_height="wrap_content"
+                                    android:hint="Resource Type" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/authorizedUserProfile_vendorEmail"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="290dp"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/authorizedUserProfile_vendorSourceType"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="30dp">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:layout_width="290dp"
+                                    android:layout_height="wrap_content"
+                                    android:hint="Vendor Email" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/authorizedUserProfile_vendorStartYear"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="290dp"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/authorizedUserProfile_vendorEmail"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="30dp">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:layout_width="290dp"
+                                    android:layout_height="wrap_content"
+                                    android:hint="Starting Year" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <Button
+                                android:id="@+id/authorizedUserProfile_vendorUpdateButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/authorizedUserProfile_vendorStartYear"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="30dp"
+                                android:layout_marginBottom="30dp"
+                                android:text="Update" />
+
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+                </ScrollView>
 
             </RelativeLayout>
 
-            <RelativeLayout
-                android:id="@+id/authorizedUserProfile_vendorRelLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/authorizedUser_profileTitle"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp"
-                android:visibility="gone">
+        </FrameLayout>
+    </LinearLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/authorizedUserProfile_vendorName"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="290dp"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true">
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/authorizedUserProfile_nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/sales_mela">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="290dp"
-                        android:layout_height="wrap_content"
-                        android:hint="Vendor Name" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/authorizedUserProfile_vendorSourceType"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="290dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/authorizedUserProfile_vendorName"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="30dp">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="290dp"
-                        android:layout_height="wrap_content"
-                        android:hint="Resource Type" />
-                </com.google.android.material.textfield.TextInputLayout>
+    </com.google.android.material.navigation.NavigationView>
 
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/authorizedUserProfile_vendorEmail"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="290dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/authorizedUserProfile_vendorSourceType"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="30dp">
+</androidx.drawerlayout.widget.DrawerLayout>
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="290dp"
-                        android:layout_height="wrap_content"
-                        android:hint="Vendor Email" />
-                </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/authorizedUserProfile_vendorStartYear"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="290dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/authorizedUserProfile_vendorEmail"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="30dp">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="290dp"
-                        android:layout_height="wrap_content"
-                        android:hint="Starting Year" />
-                </com.google.android.material.textfield.TextInputLayout>
 
-                <Button
-                    android:id="@+id/authorizedUserProfile_vendorUpdateButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/authorizedUserProfile_vendorStartYear"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginBottom="30dp"
-                    android:text="Update" />
 
-            </RelativeLayout>
 
-        </RelativeLayout>
-    </ScrollView>
-
-</RelativeLayout>

@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_updateProfile"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Update Profile" />
+        <item
+            android:id="@+id/nav_createRequest"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Create a Request" />
+        <item
+            android:id="@+id/nav_showRequests"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Show Created Requests" />
+    </group>
 </menu>
