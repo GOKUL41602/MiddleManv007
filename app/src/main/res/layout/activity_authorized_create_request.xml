@@ -19,6 +19,8 @@
             android:id="@+id/authorizedUserCreateRequest_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:titleTextColor="@color/white"
+            android:background="@color/cardview_dark_background"
             app:title="MiddleMan">
 
         </androidx.appcompat.widget.Toolbar>
