@@ -1,5 +1,6 @@
 package com.example.middlemanv007;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -13,8 +14,14 @@ import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import org.jetbrains.annotations.NotNull;
 
 public class AuthorizedUserRegistration extends AppCompatActivity {
 
@@ -26,7 +33,7 @@ public class AuthorizedUserRegistration extends AppCompatActivity {
     RelativeLayout relativeLayout, vendorRelLayout, companyRelLayout;
     String vendorEmailText, vendorNameText, vendorPasswordText, vendorReEnterPasswordText, vendorPhoneNoText, vendorSourceTypeText, vendorStartYearText;
     String emailText, companyNameText, companyRegisterNoText, passwordText, phoneNoText, userTypeText, reTypePasswordText, userName, establishmentYearText, sourceTypeText;
-    DatabaseReference reference, reference1, reference2;
+    DatabaseReference reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,11 +75,19 @@ public class AuthorizedUserRegistration extends AppCompatActivity {
                                             if (validateReEnterPassword()) {
                                                 if (verifyPassword()) {
                                                     if (validateUserType()) {
-                                                        AuthorizedCompanyDto authCompanyDto = new AuthorizedCompanyDto(emailText, userTypeText, companyNameText, companyRegisterNoText, passwordText, phoneNoText, userName, establishmentYearText, sourceTypeText);
-                                                        reference = FirebaseDatabase.getInstance().getReference("AuthorizedUsersDto");
-                                                        reference.child(userName).setValue(authCompanyDto);
-                                                        DatabaseReference dnc = FirebaseDatabase.getInstance().getReference("Company");
-                                                        dnc.child(userName).setValue(authCompanyDto);
+                                                            AuthorizedCompanyDto authCompanyDto = new AuthorizedCompanyDto(emailText, userTypeText, companyNameText, companyRegisterNoText, passwordText, phoneNoText, userName, establishmentYearText, sourceTypeText);
+                                                            reference = FirebaseDatabase.getInstance().getReference("AuthorizedUsersDto");
+                                                            reference.child(userName).setValue(authCompanyDto);
+                                                            DatabaseReference dnc = FirebaseDatabase.getInstance().getReference("Company");
+                                                            dnc.child(userName).setValue(authCompanyDto);
+                                                            Snackbar.make(relativeLayout,"User successfully Registered!",Snackbar.LENGTH_INDEFINITE).setAction("Login", new View.OnClickListener() {
+                                                                @Override
+                                                                public void onClick(View v) {
+                                                                    Intent intent=new Intent(AuthorizedUserRegistration.this,AuthorizedUserLogin.class);
+                                                                    startActivity(intent);
+                                                                    AuthorizedUserRegistration.this.finish();
+                                                                }
+                                                            }).show();
                                                     } else {
                                                         validateUserType();
                                                     }
@@ -119,11 +134,20 @@ public class AuthorizedUserRegistration extends AppCompatActivity {
                                         if (validateVendorReEnterPassword()) {
                                             if (verifyVendorPassword()) {
                                                 if (validateUserType()) {
-                                                    AuthorizedVendorDto authVendorDto = new AuthorizedVendorDto(vendorNameText, vendorEmailText, vendorPhoneNoText, vendorPasswordText, vendorStartYearText, vendorSourceTypeText, userName, userTypeText);
-                                                    reference = FirebaseDatabase.getInstance().getReference("AuthorizedUsersDto");
-                                                    reference.child(userName).setValue(authVendorDto);
-                                                    DatabaseReference dfc = FirebaseDatabase.getInstance().getReference("Vendor");
-                                                    dfc.child(userName).setValue(authVendorDto);
+                                                        AuthorizedVendorDto authVendorDto = new AuthorizedVendorDto(vendorNameText, vendorEmailText, vendorPhoneNoText, vendorPasswordText, vendorStartYearText, vendorSourceTypeText, userName, userTypeText);
+                                                        reference = FirebaseDatabase.getInstance().getReference("AuthorizedUsersDto");
+                                                        reference.child(userName).setValue(authVendorDto);
+                                                        DatabaseReference dfc = FirebaseDatabase.getInstance().getReference("Vendor");
+                                                        dfc.child(userName).setValue(authVendorDto);
+                                                    Snackbar.make(relativeLayout,"User successfully Registered!",Snackbar.LENGTH_INDEFINITE).setAction("Login", new View.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(View v) {
+                                                            Intent intent=new Intent(AuthorizedUserRegistration.this,AuthorizedUserLogin.class);
+                                                            intent.putExtra("userName",userName);
+                                                            startActivity(intent);
+                                                            AuthorizedUserRegistration.this.finish();
+                                                        }
+                                                    }).show();
                                                 } else {
                                                     validateUserType();
                                                 }
@@ -154,6 +178,7 @@ public class AuthorizedUserRegistration extends AppCompatActivity {
             }
         });
     }
+
 
     private boolean validateVendorName() {
         if (vendorNameText.equals("")) {

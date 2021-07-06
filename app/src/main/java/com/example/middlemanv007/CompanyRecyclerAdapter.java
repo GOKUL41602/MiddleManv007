@@ -1,9 +1,12 @@
 package com.example.middlemanv007;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,8 +18,10 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 
 public class CompanyRecyclerAdapter extends FirebaseRecyclerAdapter<AuthorizedCompanyDto, CompanyRecyclerAdapter.ViewHolder> {
 
+    Context context;
     public CompanyRecyclerAdapter(@NonNull FirebaseRecyclerOptions<AuthorizedCompanyDto> options, Context context) {
         super(options);
+        this.context=context;
     }
 
     @Override
@@ -24,6 +29,16 @@ public class CompanyRecyclerAdapter extends FirebaseRecyclerAdapter<AuthorizedCo
         holder.companyName.setText(model.getUserName());
         holder.establishmentYear.setText(model.getYearOfEstablish());
         holder.sourceType.setText(model.getResourceType());
+        holder.callBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                String phone = model.getPhoneNo();
+                String phoneText="+91"+phone;
+                intent.setData(Uri.parse("tel:" + phoneText));
+                holder.context.startActivity(intent);
+            }
+        });
     }
 
     @NonNull
@@ -37,9 +52,12 @@ public class CompanyRecyclerAdapter extends FirebaseRecyclerAdapter<AuthorizedCo
     {
         private CardView cardView;
         private TextView companyName,sourceType,establishmentYear;
+        private Context context;
+        private ImageView callBtn;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             initializeViews(itemView);
+            context=itemView.getContext();
         }
 
         private void initializeViews(View view)
@@ -48,6 +66,7 @@ public class CompanyRecyclerAdapter extends FirebaseRecyclerAdapter<AuthorizedCo
             companyName=view.findViewById(R.id.company_cardView_name);
             sourceType=view.findViewById(R.id.company_cardView_sourceType);
             establishmentYear=view.findViewById(R.id.company_cardView_establishmentYear);
+            callBtn=view.findViewById(R.id.company_cardView_callBtn);
         }
     }
 }

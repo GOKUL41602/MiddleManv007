@@ -1,9 +1,13 @@
 package com.example.middlemanv007;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,8 +19,10 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 
 public class SalesMelaRecyclerAdapter extends FirebaseRecyclerAdapter<SalesMelaDto, SalesMelaRecyclerAdapter.ViewHolder> {
 
+
     public SalesMelaRecyclerAdapter(@NonNull FirebaseRecyclerOptions<SalesMelaDto> options, Context context) {
         super(options);
+
     }
 
     @Override
@@ -30,6 +36,8 @@ public class SalesMelaRecyclerAdapter extends FirebaseRecyclerAdapter<SalesMelaD
             holder.vendorStocksAvailable.setText(model.getVendorStocksAvailable());
             holder.vendorExpireWithIn.setText(model.getVendorExpireWithIn());
             holder.vendorContactNo.setText(model.getVendorContactNo());
+
+
         }
         if(model.getUserType().equals("Company"))
         {
@@ -40,6 +48,7 @@ public class SalesMelaRecyclerAdapter extends FirebaseRecyclerAdapter<SalesMelaD
             holder.companyStocksNeeded.setText(model.getCompanyStocksNeeded());
             holder.companyRequiredWithIn.setText(model.getCompanyRequiredWithIn());
             holder.companyContactNo.setText(model.getCompanyContactNo());
+
         }
 
     }
@@ -53,12 +62,15 @@ public class SalesMelaRecyclerAdapter extends FirebaseRecyclerAdapter<SalesMelaD
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
+        public Context context;
         private CardView vendorCardView, companyCardView;
+        private ImageView companyCallBtn,vendorCallBtn;
         private TextView vendorType,companyType,vendorMaterialType, vendorStocksAvailable, vendorExpireWithIn, vendorContactNo, companyMaterialType, companyStocksNeeded, companyRequiredWithIn, companyContactNo;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             initializeViews(itemView);
+            context=itemView.getContext();
         }
 
         private void initializeViews(View view) {
@@ -74,6 +86,10 @@ public class SalesMelaRecyclerAdapter extends FirebaseRecyclerAdapter<SalesMelaD
             companyContactNo = view.findViewById(R.id.companyContactNo);
             vendorCardView = view.findViewById(R.id.sales_mela_vendorCardView);
             companyCardView = view.findViewById(R.id.sales_mela_companyCardView);
+
+            companyCallBtn=view.findViewById(R.id.company_cardView_callBtn);
+            vendorCallBtn=view.findViewById(R.id.vendor_cardView_callBtn);
+
         }
     }
 }

@@ -3,20 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="10dp">
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="20dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/sales_mela_companyCardView"
         android:layout_width="370dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:elevation="5dp"
         android:visibility="visible"
         app:cardCornerRadius="10dp">
 
         <RelativeLayout
             android:id="@+id/sales_mela_companyRelLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp">
 
             <TextView
                 android:id="@+id/companyTypeText"
@@ -34,13 +37,14 @@
                 android:layout_toRightOf="@+id/companyTypeText"
                 android:text="Type"
                 android:textSize="18sp" />
+
             <TextView
                 android:id="@+id/companyMaterialTypeText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/companyTypeText"
-                android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
                 android:text="Material Type : "
                 android:textSize="18sp" />
 
@@ -48,8 +52,8 @@
                 android:id="@+id/companyMaterialType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
                 android:layout_below="@+id/companyType"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_toRightOf="@+id/companyMaterialTypeText"
                 android:text="Material Type"
@@ -114,6 +118,7 @@
                 android:layout_below="@+id/companyRequiredWithIn"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="6dp"
+                android:layout_marginBottom="10dp"
                 android:layout_toRightOf="@+id/companyContactNoText"
                 android:text="contact no"
                 android:textSize="18sp" />
