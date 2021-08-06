@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -28,6 +29,7 @@ public class UserRegistration extends AppCompatActivity {
     Button registerBtn;
     RelativeLayout relativeLayout;
     DatabaseReference reference;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,7 @@ public class UserRegistration extends AppCompatActivity {
                     if (validatePassword()) {
                         if (validateReEnterPassword()) {
                             try {
+                                progressBar.setVisibility(View.VISIBLE);
                                 userName.setError(null);
                                 userName.setErrorEnabled(false);
                                 verifyUser();
@@ -74,12 +77,14 @@ public class UserRegistration extends AppCompatActivity {
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     userName.setError("User name already exists");
+                    progressBar.setVisibility(View.GONE);
                     userName.setErrorEnabled(true);
                 } else {
                     userName.setError(null);
                     userName.setErrorEnabled(false);
                     UserDto userDto = new UserDto(userNameText, reEnterPasswordText);
                     reference.child(userNameText).setValue(userDto);
+                    progressBar.setVisibility(View.GONE);
                     Snackbar.make(relativeLayout, "User successfully created", Snackbar.LENGTH_INDEFINITE).setAction("Login", new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -112,7 +117,7 @@ public class UserRegistration extends AppCompatActivity {
     }
 
     private boolean validatePassword() {
-        if (passwordText.equals("")) {
+        if (passwordText.equals("") || passwordText.length() < 6) {
             password.setError("Enter valid 6 digit password");
             password.setErrorEnabled(true);
             return false;
@@ -124,7 +129,7 @@ public class UserRegistration extends AppCompatActivity {
     }
 
     private boolean validateReEnterPassword() {
-        if (reEnterPasswordText.equals("")) {
+        if (reEnterPasswordText.equals("") || reEnterPasswordText.length() < 6) {
             reEnterPassword.setError("Enter valid 6 digit password");
             reEnterPassword.setErrorEnabled(true);
             return false;
@@ -154,5 +159,7 @@ public class UserRegistration extends AppCompatActivity {
         reEnterPassword = findViewById(R.id.userRegistrationPage_reEnterPassword);
         registerBtn = findViewById(R.id.userRegistrationPage_registerButton);
         relativeLayout = findViewById(R.id.userRegistration_relLayout);
+
+        progressBar = findViewById(R.id.userRegistrationPage_progressBar);
     }
 }

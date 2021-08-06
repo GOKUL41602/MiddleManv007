@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     RelativeLayout relativeLayout;
     TextView newUserButton;
     DatabaseReference reference;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 initializeStrings();
                 if (validateUser()) {
                     if (validatePassword()) {
+                        progressBar.setVisibility(View.VISIBLE);
                         validateUserName();
                     } else {
                         validatePassword();
@@ -70,9 +73,11 @@ public class MainActivity extends AppCompatActivity {
                 initializeStrings();
 
                 if (validateUser()) {
+                    progressBar.setVisibility(View.VISIBLE);
                     validateUserNameForForgetPassword();
                 } else {
                     validateUser();
+                    progressBar.setVisibility(View.GONE);
                 }
 
             }
@@ -90,11 +95,13 @@ public class MainActivity extends AppCompatActivity {
                     if (userNameFromDB.equals(userNameText)) {
                         userName.setError(null);
                         userName.setErrorEnabled(true);
+                        progressBar.setVisibility(View.GONE);
                         Intent intent = new Intent(MainActivity.this, ForgetPassword.class);
                         intent.putExtra("userName", userNameText);
                         intent.putExtra("userMode", "Normal");
                         startActivity(intent);
                     } else {
+                        progressBar.setVisibility(View.GONE);
                         userName.setError("User name doesn't exists");
                         userName.setErrorEnabled(true);
                         userName.requestFocus();
@@ -125,21 +132,25 @@ public class MainActivity extends AppCompatActivity {
                         if (passwordText.equals(passwordFromDB)) {
                             password.setErrorEnabled(false);
                             password.setError(null);
+                            progressBar.setVisibility(View.GONE);
                             Intent intent = new Intent(MainActivity.this, SalesMela.class);
                             intent.putExtra("userName", userNameText);
                             startActivity(intent);
                             MainActivity.this.finish();
                         } else {
                             password.setErrorEnabled(true);
+                            progressBar.setVisibility(View.GONE);
                             password.setError("Incorrect Password");
                             password.requestFocus();
                         }
                     } else {
+                        progressBar.setVisibility(View.GONE);
                         userName.setError("User name doesn't exists");
                         userName.setErrorEnabled(true);
                         userName.requestFocus();
                     }
                 } else {
+                    progressBar.setVisibility(View.GONE);
                     userName.setError("User name doesn't exists");
                     userName.setErrorEnabled(true);
                     userName.requestFocus();
@@ -167,8 +178,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean validatePassword() {
-        if (passwordText.equals("")) {
-            password.setError("Enter Password");
+        if (passwordText.equals("") || passwordText.length() < 6) {
+            password.setError("Enter Valid 6 digit  Password");
             password.setErrorEnabled(true);
             return false;
         } else {
@@ -190,5 +201,6 @@ public class MainActivity extends AppCompatActivity {
         relativeLayout = findViewById(R.id.mainActivity_relLayout);
         newUserButton = findViewById(R.id.loginPage_newUserButton);
         forgetPasswordButton = findViewById(R.id.loginPage_forgetPasswordButton);
+        progressBar = findViewById(R.id.loginPage_progressBar);
     }
 }

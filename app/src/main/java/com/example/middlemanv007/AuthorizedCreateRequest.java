@@ -92,7 +92,7 @@ public class AuthorizedCreateRequest extends AppCompatActivity implements Naviga
                                 reference.push().setValue(vendorDto);
                                 reference1 = FirebaseDatabase.getInstance().getReference("Requests");
                                 reference1.child(userName).child(key).setValue(vendorDto);
-                                Toast.makeText(AuthorizedCreateRequest.this, "Vendor Success", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AuthorizedCreateRequest.this, "Request Created", Toast.LENGTH_SHORT).show();
                             } else {
                                 validateVendorContactNo();
                             }

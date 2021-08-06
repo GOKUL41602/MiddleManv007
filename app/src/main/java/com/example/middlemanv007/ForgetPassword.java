@@ -110,9 +110,9 @@ public class ForgetPassword extends AppCompatActivity {
     }
 
     private boolean validateCreatePassword() {
-        if (createPasswordText.equals("")) {
+        if (createPasswordText.equals("") || createPasswordText.length() < 6) {
             createPassword.setErrorEnabled(true);
-            createPassword.setError("Create Password");
+            createPassword.setError("Create 6 digit Password");
             return false;
         } else {
             createPassword.setErrorEnabled(false);
@@ -122,9 +122,9 @@ public class ForgetPassword extends AppCompatActivity {
     }
 
     private boolean validateConfirmPassword() {
-        if (confirmPasswordText.equals("")) {
+        if (confirmPasswordText.equals("") || confirmPasswordText.length() < 6) {
             confirmPassword.setErrorEnabled(true);
-            confirmPassword.setError("Enter Confirm Password");
+            confirmPassword.setError("Enter Confirm 6 digit Password");
             return false;
         } else {
             confirmPassword.setErrorEnabled(false);

@@ -17,6 +17,13 @@
         android:textStyle="italic|bold"
         android:layout_marginTop="50dp"/>
 
+    <ProgressBar
+    android:id="@+id/loginPage_progressBar"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    android:visibility="gone" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="290dp"
         android:layout_height="wrap_content"
