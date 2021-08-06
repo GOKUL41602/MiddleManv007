@@ -73,11 +73,10 @@ public class MainActivity extends AppCompatActivity {
                 initializeStrings();
 
                 if (validateUser()) {
-                    progressBar.setVisibility(View.VISIBLE);
+
                     validateUserNameForForgetPassword();
                 } else {
                     validateUser();
-                    progressBar.setVisibility(View.GONE);
                 }
 
             }
@@ -85,27 +84,37 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void validateUserNameForForgetPassword() {
+        progressBar.setVisibility(View.VISIBLE);
         reference = FirebaseDatabase.getInstance().getReference("UsersDto");
         Query query = reference.orderByChild("userName").startAt(userNameText).endAt(userNameText + "\uf8ff");
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
+
                     String userNameFromDB = snapshot.child(userNameText).child("userName").getValue(String.class);
                     if (userNameFromDB.equals(userNameText)) {
                         userName.setError(null);
                         userName.setErrorEnabled(true);
-                        progressBar.setVisibility(View.GONE);
                         Intent intent = new Intent(MainActivity.this, ForgetPassword.class);
                         intent.putExtra("userName", userNameText);
                         intent.putExtra("userMode", "Normal");
                         startActivity(intent);
+                        progressBar.setVisibility(View.GONE);
+
                     } else {
                         progressBar.setVisibility(View.GONE);
                         userName.setError("User name doesn't exists");
                         userName.setErrorEnabled(true);
                         userName.requestFocus();
                     }
+                }
+                else
+                {
+                    progressBar.setVisibility(View.GONE);
+                    userName.setError("User name doesn't exists");
+                    userName.setErrorEnabled(true);
+                    userName.requestFocus();
                 }
             }
 

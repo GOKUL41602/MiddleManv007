@@ -8,8 +8,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
@@ -30,6 +32,7 @@ public class AuthorizedUserLogin extends AppCompatActivity {
     String userName, emailText, passwordText;
     DatabaseReference reference;
     RelativeLayout relativeLayout;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,7 @@ public class AuthorizedUserLogin extends AppCompatActivity {
             userName = getIntent().getStringExtra("userName");
         } catch (Exception e) {
             userName = null;
+            Toast.makeText(this, "Try Again!", Toast.LENGTH_SHORT).show();
         }
         initializeViews();
 
@@ -83,6 +87,7 @@ public class AuthorizedUserLogin extends AppCompatActivity {
     }
 
     private void verifyEmailForForgetPassword() {
+        progressBar.setVisibility(View.VISIBLE);
         reference = FirebaseDatabase.getInstance().getReference("AuthorizedUsersDto");
         Query query = reference.orderByChild("userName").startAt(userName).endAt(userName + "\uf8ff");
         query.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -97,12 +102,16 @@ public class AuthorizedUserLogin extends AppCompatActivity {
                         intent.putExtra("userName", userName);
                         intent.putExtra("userMode", "Authorized");
                         startActivity(intent);
+                        progressBar.setVisibility(View.GONE);
                     } else {
+                        progressBar.setVisibility(View.GONE);
                         email.setError("Email doesn't exists");
                         email.setErrorEnabled(true);
                     }
                 } else {
-
+                    progressBar.setVisibility(View.GONE);
+                    email.setError("Email doesn't exists");
+                    email.setErrorEnabled(true);
                 }
             }
 
@@ -115,6 +124,7 @@ public class AuthorizedUserLogin extends AppCompatActivity {
     }
 
     private void verifyUser() {
+        progressBar.setVisibility(View.VISIBLE);
         reference = FirebaseDatabase.getInstance().getReference("AuthorizedUsersDto");
         Query query = reference.orderByChild("userName").startAt(userName).endAt(userName + "\uf8ff");
 
@@ -135,14 +145,21 @@ public class AuthorizedUserLogin extends AppCompatActivity {
                             intent.putExtra("userName", userName);
                             intent.putExtra("userType", userType);
                             startActivity(intent);
+                            progressBar.setVisibility(View.GONE);
                         } else {
+                            progressBar.setVisibility(View.GONE);
                             password.setError("Incorrect Password");
                             password.setErrorEnabled(true);
                         }
                     } else {
+                        progressBar.setVisibility(View.GONE);
                         email.setError("Email doesn't exists");
                         email.setErrorEnabled(true);
                     }
+                } else {
+                    progressBar.setVisibility(View.GONE);
+                    email.setError("Email doesn't exists");
+                    email.setErrorEnabled(true);
                 }
             }
 
@@ -189,5 +206,6 @@ public class AuthorizedUserLogin extends AppCompatActivity {
         forgetPasswordButton = findViewById(R.id.authorizedLoginPage_forgetPasswordButton);
         newUserButton = findViewById(R.id.authorizedLoginPage_newUserButton);
         relativeLayout = findViewById(R.id.authorizedLoginPage_relLayout);
+        progressBar = findViewById(R.id.authorizedLoginPage_progressBar);
     }
 }

@@ -2,83 +2,91 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/authorizedLoginPage_relLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/authorizedLoginPage_relLayout"
     tools:context=".AuthorizedUserLogin">
 
     <TextView
+        android:id="@+id/authorizedLoginPage_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/authorizedLoginPage_title"
-        android:text="Middle Man"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:text="Middle Man"
         android:textSize="40sp"
-        android:textStyle="italic|bold"
-        android:layout_marginTop="50dp"/>
+        android:textStyle="italic|bold" />
+
+    <ProgressBar
+        android:id="@+id/authorizedLoginPage_progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/authorizedLoginPage_email"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="290dp"
         android:layout_height="wrap_content"
-        android:id="@+id/authorizedLoginPage_email"
         android:layout_below="@+id/authorizedLoginPage_title"
-        android:layout_marginTop="30dp"
         android:layout_centerHorizontal="true"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        android:layout_marginTop="30dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="290dp"
             android:layout_height="wrap_content"
-            android:hint="User name"/>
+            android:inputType="textEmailAddress"
+            android:hint="Email" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/authorizedLoginPage_password"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="290dp"
         android:layout_height="wrap_content"
-        android:id="@+id/authorizedLoginPage_password"
         android:layout_below="@+id/authorizedLoginPage_email"
-        android:layout_marginTop="30dp"
         android:layout_centerHorizontal="true"
-        app:passwordToggleEnabled="true"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        android:layout_marginTop="30dp"
+        app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="290dp"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:hint="Password"/>
+            android:hint="Password"
+            android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
+        android:id="@+id/authorizedLoginPage_forgetPasswordButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/authorizedLoginPage_forgetPasswordButton"
         android:layout_below="@+id/authorizedLoginPage_password"
         android:layout_alignParentRight="true"
-        android:text="ForgetPassword"
-        android:elevation="10dp"
+        android:layout_marginTop="30dp"
         android:layout_marginRight="40dp"
-        android:layout_marginTop="30dp"/>
+        android:elevation="10dp"
+        android:text="ForgetPassword" />
 
     <Button
+        android:id="@+id/authorizedLoginPage_loginButton"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:id="@+id/authorizedLoginPage_loginButton"
         android:layout_below="@+id/authorizedLoginPage_forgetPasswordButton"
         android:layout_centerHorizontal="true"
-        android:text="Login"
-        android:elevation="10dp"
+        android:layout_marginTop="30dp"
         android:layout_marginRight="40dp"
-        android:layout_marginTop="30dp"/>
+        android:elevation="10dp"
+        android:text="Login" />
 
     <TextView
+        android:id="@+id/authorizedLoginPage_newUserButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/authorizedLoginPage_newUserButton"
-        android:text="New User? Register"
         android:layout_below="@+id/authorizedLoginPage_loginButton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:textSize="20sp"/>
+        android:text="New User? Register"
+        android:textSize="20sp" />
 
 </RelativeLayout>
